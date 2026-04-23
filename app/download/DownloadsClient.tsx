@@ -419,7 +419,7 @@ export default function DownloadsClient() {
                     The source code can be found simply on its GitHub.
                   </p>
                   <a
-                    className="bg-foreground font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-background text-center text-sm"
+                    className="bg-[#553746] font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-[#FFEBF5] text-center text-sm"
                     href="https://github.com/Aster-IDE/AsterIDE/archive/refs/tags/v0.1.0-stable.tar.gz"
                   >
                     Download .tar.gz (main)
@@ -446,7 +446,7 @@ export default function DownloadsClient() {
                   &ldquo;Apple could not verify &#39;AsterIDE&#39; is free of malware that may harm your Mac or compromise your privacy.&rdquo; warning?
                 </span>
                 <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24">
                     <path d="M6 9l6 6 6-6"></path>
                   </svg>
                 </span>
