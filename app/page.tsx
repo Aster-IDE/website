@@ -48,21 +48,21 @@ export default function Home() {
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaPalette /></div>
               <h3 className="mb-2 font-semibold">Beautiful Themes</h3>
               <p className="text-sm text-muted-foreground">
-                Cherry blossom inspired default theme with support for custom themes and dark mode.
+                Cherry blossom inspired default theme with support for custom themes and dark mode coming soon.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaDesktop /></div>
               <h3 className="mb-2 font-semibold">Cross Platform</h3>
               <p className="text-sm text-muted-foreground">
-                Available on Linux, macOS, and Windows. Nix flake support for reproducible builds.
+                Available for macOS, Nix, and coming to Windows and Linux soon.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaKeyboard /></div>
               <h3 className="mb-2 font-semibold">Vim-like Bindings</h3>
               <p className="text-sm text-muted-foreground">
-                Familiar modal editing support with customizable keybindings for your workflow.
+                Familiar modal editing support with customizable keybindings for your workflow in the works.
               </p>
             </div>
           </div>
