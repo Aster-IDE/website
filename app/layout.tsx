@@ -50,7 +50,7 @@ export default function RootLayout({
         {children}
           <footer className="mt-auto border-t border-zinc-200 px-4 py-6 dark:border-zinc-800">
             <div className="mx-auto max-w-5xl text-center text-sm text-zinc-500">
-              © 2026 Aster IDE. This software follows the principles of the{" "}
+              © 2026 AsterIDE. This software follows the principles of the{" "}
               <a
                 href="https://www.fsf.org/"
                 target="_blank"

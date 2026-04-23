@@ -1,7 +1,7 @@
 import DownloadsClient from "./DownloadsClient";
 
 export const metadata = {
-  title: "Downloads - Aster IDE",
+  title: "AsterIDE - Downloads",
 };
 
 export default function DownloadPage() {
