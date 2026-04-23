@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CherryBlossom from "@/components/CherryBlossom";
+import PronunciationButton from "@/components/PronunciationButton";
 import { FaBolt, FaPalette, FaDesktop, FaKeyboard } from "react-icons/fa";
 
 export default function Home() {
@@ -7,9 +8,12 @@ export default function Home() {
     <div className="flex flex-col flex-1 relative">
       <CherryBlossom count={25} />
       <section className="flex flex-col items-center justify-center px-4 py-24 text-center relative z-10">
-        <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          AsterIDE
-        </h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
+            AsterIDE
+          </h1>
+          <PronunciationButton />
+        </div>
         <p className="mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
           A Simple Text Editor written in Rust.
           Built for Simplicity and Ease on the eyes.
