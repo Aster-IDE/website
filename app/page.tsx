@@ -34,7 +34,25 @@ export default function Home() {
             <div className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
               <h3 className="mb-2 text-lg font-semibold">Source Control Management</h3>
               <p className="text-zinc-600 dark:text-zinc-400">
-                Future plans are to implement both Git, and Merucrial Support for SCM.
+                Future plans are to implement both{" "}
+                <a
+                  href="https://git-scm.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-zinc-900 dark:hover:text-zinc-100"
+                >
+                  Git
+                </a>
+                , and{" "}
+                <a
+                  href="https://www.mercurial-scm.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-zinc-900 dark:hover:text-zinc-100"
+                >
+                  Mercurial
+                </a>{" "}
+                support for SCM.
               </p>
             </div>
             <div className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
