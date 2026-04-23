@@ -8,12 +8,33 @@ import { Copy } from "lucide-react";
 import Image from "next/image";
 import DownloadOption from "@/components/DownloadOption";
 
+type NixOption = "flake" | "configuration";
+
 export default function DownloadsClient() {
   const [isCopied, setIsCopied] = useState(false);
   const [xattrCopied, setXattrCopied] = useState(false);
   const [sourceCodeOpen, setSourceCodeOpen] = useState(false);
+  const [selectedNixOption, setSelectedNixOption] = useState<NixOption>("flake");
+  const [copiedSection, setCopiedSection] = useState<string | null>(null);
   const copyTimeout = useRef<NodeJS.Timeout | null>(null);
   const xattrTimeout = useRef<NodeJS.Timeout | null>(null);
+  const sectionTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleSectionCopy = (text: string, section: string) => {
+    if (copiedSection === section) return;
+
+    navigator.clipboard.writeText(text);
+    setCopiedSection(section);
+
+    if (sectionTimeout.current) {
+      clearTimeout(sectionTimeout.current);
+    }
+
+    sectionTimeout.current = setTimeout(() => {
+      setCopiedSection(null);
+      sectionTimeout.current = null;
+    }, 1500);
+  };
 
   const handleCopy = () => {
     if (isCopied) return;
@@ -55,6 +76,9 @@ export default function DownloadsClient() {
       if (xattrTimeout.current) {
         clearTimeout(xattrTimeout.current);
       }
+      if (sectionTimeout.current) {
+        clearTimeout(sectionTimeout.current);
+      }
     };
   }, []);
 
@@ -66,34 +90,277 @@ export default function DownloadsClient() {
           Download for
         </h2>
         <div className="space-y-3">
-          <DownloadOption
-            title="Nix"
-            description="A Nix flake output and overlay"
-            instructions={(
-              <div className="flex flex-col">
-                <h3 className="text-foreground text-lg font-semibold">Installing via Flake</h3>
-                <p className="text-muted-foreground text-sm mt-1">Running the flake is as simple as</p>
-                <div className="relative mt-2">
-                  <div className="bg-accent/30 rounded-md pr-9 font-mono text-sm overflow-x-auto text-foreground/90 border border-border">
-                    <div className="absolute top-2.5 right-2">
-                      <button
-                        onClick={handleCopy}
-                        disabled={isCopied}
-                        className={`transition-colors cursor-pointer ${isCopied ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
-                        title={isCopied ? 'Copied!' : 'Copy to clipboard'}
-                      >
-                        {isCopied ? 'Copied!' : <Copy className="w-4 h-4" />}
-                      </button>
+              <DownloadOption
+              title="Nix"
+              description="A Nix flake output and overlay"
+              instructions={(
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <h3 className="text-foreground text-lg font-semibold">
+                      Run directly via Flake
+                    </h3>
+                    <p className="text-muted-foreground text-sm mt-1">
+                      Quick test run without installing
+                    </p>
+
+                    <div className="relative mt-2">
+                      <div className="bg-accent/30 rounded-md pr-9 font-mono text-sm overflow-x-auto text-foreground/90 border border-border">
+                        <div className="absolute top-2.5 right-2">
+                          <button
+                            onClick={handleCopy}
+                            disabled={isCopied}
+                            className={`transition-colors cursor-pointer ${
+                              isCopied
+                                ? "text-primary"
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                            title={isCopied ? "Copied!" : "Copy to clipboard"}
+                          >
+                            {isCopied ? "Copied!" : <Copy className="w-4 h-4" />}
+                          </button>
+                        </div>
+
+                        <pre className="text-[14px] p-3 font-medium text-foreground overflow-x-auto">
+                          <code>nix run github:Aster-IDE/AsterIDE</code>
+                        </pre>
+                      </div>
                     </div>
-                    <pre className="text-[14px] p-3 font-medium text-foreground overflow-x-auto"><code>nix run github:Aster-IDE/AsterIDE</code></pre>
                   </div>
+                  <div>
+                    <h3 className="text-foreground text-lg font-semibold">
+                      Add as a Flake input
+                    </h3>
+                    <p className="text-muted-foreground text-sm mt-1">
+                      Use this if you want to integrate it into your own flake
+                    </p>
+
+                    <div className="mt-3 rounded-md border border-border bg-card overflow-hidden">
+                      <div className="flex border-b border-border">
+                        <button
+                          onClick={() => setSelectedNixOption("flake")}
+                          className={`flex-1 px-4 py-2 text-sm font-medium transition-colors ${
+                            selectedNixOption === "flake"
+                              ? "bg-accent/50 text-foreground border-b-2 border-primary"
+                              : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
+                          }`}
+                        >
+                          Proper Flake
+                        </button>
+                        <button
+                          onClick={() => setSelectedNixOption("configuration")}
+                          className={`flex-1 px-4 py-2 text-sm font-medium transition-colors ${
+                            selectedNixOption === "configuration"
+                              ? "bg-accent/50 text-foreground border-b-2 border-primary"
+                              : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
+                          }`}
+                        >
+                          configuration.nix
+                        </button>
+                      </div>
+
+                      <div className="p-4">
+                        {selectedNixOption === "flake" ? (
+                          <div className="space-y-4">
+                            <div>
+                              <div className="text-xs text-muted-foreground mb-1 font-mono">~/.nix/flake.nix</div>
+                              <div className="relative">
+                                <div className="bg-accent/30 rounded-md pr-9 font-mono text-sm overflow-x-auto text-foreground/90 border border-border">
+                                  <div className="absolute top-2 right-2">
+                                    <button
+                                      onClick={() => handleSectionCopy(`{
+  inputs.asteride.url = "github:Aster-IDE/AsterIDE";
+
+  outputs = { self, nixpkgs, asteride, ... }@inputs:
+    let
+      system = "x86_64-linux";
+    in
+    {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./modules
+          { nixpkgs.overlays = [ asteride.overlay ]; }
+        ];
+      };
+    };
+}`, "flake")}
+                                      className={`transition-colors cursor-pointer ${
+                                        copiedSection === "flake"
+                                          ? "text-primary"
+                                          : "text-muted-foreground hover:text-foreground"
+                                      }`}
+                                      title={copiedSection === "flake" ? "Copied!" : "Copy to clipboard"}
+                                    >
+                                      {copiedSection === "flake" ? "Copied!" : <Copy className="w-4 h-4" />}
+                                    </button>
+                                  </div>
+                                  <pre className="text-[13px] p-3 font-medium text-foreground overflow-x-auto">
+                                    <code>{`{
+  inputs.asteride.url = "github:Aster-IDE/AsterIDE";
+
+  outputs = { self, nixpkgs, asteride, ... }@inputs:
+    let
+      system = "x86_64-linux";
+    in
+    {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./modules
+          { nixpkgs.overlays = [ asteride.overlay ]; }
+        ];
+      };
+    };
+}`}</code>
+                                  </pre>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div className="text-xs text-muted-foreground mb-1 font-mono">~/.nix/modules/default.nix</div>
+                              <div className="relative">
+                                <div className="bg-accent/30 rounded-md pr-9 font-mono text-sm overflow-x-auto text-foreground/90 border border-border">
+                                  <div className="absolute top-2 right-2">
+                                    <button
+                                      onClick={() => handleSectionCopy(`{ config, pkgs, ... }: {
+  imports = [
+    ./home
+  ];
+}`, "modules")}
+                                      className={`transition-colors cursor-pointer ${
+                                        copiedSection === "modules"
+                                          ? "text-primary"
+                                          : "text-muted-foreground hover:text-foreground"
+                                      }`}
+                                      title={copiedSection === "modules" ? "Copied!" : "Copy to clipboard"}
+                                    >
+                                      {copiedSection === "modules" ? "Copied!" : <Copy className="w-4 h-4" />}
+                                    </button>
+                                  </div>
+                                  <pre className="text-[13px] p-3 font-medium text-foreground overflow-x-auto">
+                                    <code>{`{ config, pkgs, ... }: {
+  imports = [
+    ./home
+  ];
+}`}</code>
+                                  </pre>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <div className="text-xs text-muted-foreground mb-1 font-mono">~/.nix/modules/home/packages.nix</div>
+                              <div className="relative">
+                                <div className="bg-accent/30 rounded-md pr-9 font-mono text-sm overflow-x-auto text-foreground/90 border border-border">
+                                  <div className="absolute top-2 right-2">
+                                    <button
+                                      onClick={() => handleSectionCopy(`{ config, pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    asteride
+  ];
+}`, "packages")}
+                                      className={`transition-colors cursor-pointer ${
+                                        copiedSection === "packages"
+                                          ? "text-primary"
+                                          : "text-muted-foreground hover:text-foreground"
+                                      }`}
+                                      title={copiedSection === "packages" ? "Copied!" : "Copy to clipboard"}
+                                    >
+                                      {copiedSection === "packages" ? "Copied!" : <Copy className="w-4 h-4" />}
+                                    </button>
+                                  </div>
+                                  <pre className="text-[13px] p-3 font-medium text-foreground overflow-x-auto">
+                                    <code>{`{ config, pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    asteride
+  ];
+}`}</code>
+                                  </pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="space-y-4">
+                            <div>
+                              <div className="text-xs text-muted-foreground mb-1 font-mono">/etc/nixos/configuration.nix</div>
+                              <div className="relative">
+                                <div className="bg-accent/30 rounded-md pr-9 font-mono text-sm overflow-x-auto text-foreground/90 border border-border">
+                                  <div className="absolute top-2 right-2">
+                                    <button
+                                      onClick={() => handleSectionCopy(`{ config, pkgs, ... }: {
+  # Add to your existing imports
+  imports = [
+    # ... your other imports
+  ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      asteride = pkgs.callPackage (pkgs.fetchFromGitHub {
+        owner = "Aster-IDE";
+        repo = "AsterIDE";
+        rev = "main";
+        hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      }) {};
+    })
+  ];
+
+  environment.systemPackages = with pkgs; [
+    asteride
+  ];
+}`, "configuration")}
+                                      className={`transition-colors cursor-pointer ${
+                                        copiedSection === "configuration"
+                                          ? "text-primary"
+                                          : "text-muted-foreground hover:text-foreground"
+                                      }`}
+                                      title={copiedSection === "configuration" ? "Copied!" : "Copy to clipboard"}
+                                    >
+                                      {copiedSection === "configuration" ? "Copied!" : <Copy className="w-4 h-4" />}
+                                    </button>
+                                  </div>
+                                  <pre className="text-[13px] p-3 font-medium text-foreground overflow-x-auto">
+                                    <code>{`{ config, pkgs, ... }: {
+  imports = [
+    # ... your other imports
+  ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      asteride = pkgs.callPackage (pkgs.fetchFromGitHub {
+        owner = "Aster-IDE";
+        repo = "AsterIDE";
+        rev = "main";
+        hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      }) {};
+    })
+  ];
+
+  environment.systemPackages = with pkgs; [
+    asteride
+  ];
+}`}</code>
+                                  </pre>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-              </div>
-            )}
-            icon={<SiNixos className="text-foreground/70 w-5 h-5" />}
-            type="commands"
-            disabled={false}
-          />
+              )}
+              icon={<SiNixos className="text-foreground/70 w-5 h-5" />}
+              type="commands"
+              disabled={false}
+              />
 
           <DownloadOption
             title="Linux"
