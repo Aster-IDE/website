@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -7,7 +8,7 @@ export const revalidate = 0;
 async function getRoadmapContent() {
   try {
     const response = await fetch(
-      "https://github.com/Aster-IDE/AsterIDE/blob/master/ROADMAP.md",
+      "https://raw.githubusercontent.com/Aster-IDE/AsterIDE/dev/ROADMAP.md",
       { cache: "no-store" }
     );
     if (!response.ok) {
@@ -19,20 +20,6 @@ async function getRoadmapContent() {
   }
 }
 
-function formatMarkdown(content: string): string {
-  return content
-    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold mt-6 mb-3">$1</h3>')
-    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-semibold mt-8 mb-4 text-[#FF82B4]">$1</h2>')
-    .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mt-8 mb-6">$1</h1>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/`([^`]+)`/g, '<code class="bg-accent/50 px-1.5 py-0.5 rounded text-sm font-mono">$1</code>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[#FF82B4] hover:underline">$1</a>')
-    .replace(/^- (.*$)/gim, '<li class="ml-4 mb-1">$1</li>')
-    .replace(/(<li.*<\/li>\n?)+/g, '<ul class="mb-4">$&</ul>')
-    .replace(/\n\n/g, '</p><p class="mb-4">')
-    .replace(/^(?!<[hlu])(.*$)/gim, '<p class="mb-4">$1</p>');
-}
 
 export default async function RoadmapPage() {
   const content = await getRoadmapContent();
@@ -69,10 +56,7 @@ export default async function RoadmapPage() {
 
           <div className="border border-border rounded-xl bg-card/50 p-8">
             {content ? (
-              <div
-                className="prose prose-invert max-w-none prose-headings:font-semibold prose-a:text-[#FF82B4] hover:prose-a:underline"
-                dangerouslySetInnerHTML={{ __html: formatMarkdown(content) }}
-              />
+              <MarkdownRenderer content={content} />
             ) : (
               <div className="text-center py-12">
                 <p className="text-muted-foreground">
