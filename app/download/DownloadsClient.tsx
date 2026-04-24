@@ -377,7 +377,7 @@ export default function DownloadsClient() {
             icon={<FaApple className="text-foreground/70 w-5 h-5" />}
             type="file"
             fileType="DMG"
-            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.0-stable/AsterIDE.dmg"
+            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.1-stable/AsterIDE.dmg"
             disabled={false}
           />
 
