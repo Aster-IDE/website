@@ -377,7 +377,7 @@ export default function DownloadsClient() {
             icon={<FaApple className="text-foreground/70 w-5 h-5" />}
             type="file"
             fileType="DMG"
-            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.1-windows/AsterIDE.dmg"
+            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.2-windows-x86_64/AsterIDE.dmg"
             disabled={false}
           />
 
@@ -387,7 +387,7 @@ export default function DownloadsClient() {
             icon={<FaWindows className="text-foreground/70 w-5 h-5" />}
             type="file"
             fileType="EXE"
-            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.1-windows/asteride.exe"
+            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.2-windows-x86_64/asteride.exe"
             disabled={false}
           />
         </div>
@@ -421,7 +421,7 @@ export default function DownloadsClient() {
                   </p>
                   <a
                     className="bg-[#553746] font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-[#FFEBF5] text-center text-sm"
-                    href="https://github.com/Aster-IDE/AsterIDE/archive/refs/tags/v0.1.1-windows.tar.gz"
+                    href="https://github.com/Aster-IDE/AsterIDE/archive/refs/tags/v0.1.2-windows-x86_64.tar.gz"
                   >
                     Download .tar.gz
                   </a>
