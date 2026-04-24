@@ -420,9 +420,9 @@ export default function DownloadsClient() {
                   </p>
                   <a
                     className="bg-[#553746] font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-[#FFEBF5] text-center text-sm"
-                    href="https://github.com/Aster-IDE/AsterIDE/archive/refs/tags/v0.1.0-stable.tar.gz"
+                    href="https://github.com/Aster-IDE/AsterIDE/archive/refs/tags/v0.1.1-stable.tar.gz"
                   >
-                    Download .tar.gz (main)
+                    Download .tar.gz
                   </a>
                 </div>
               </motion.div>
