@@ -52,7 +52,7 @@ export default function Home() {
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaPalette /></div>
               <h3 className="mb-2 font-semibold">Beautiful Themes</h3>
               <p className="text-sm text-muted-foreground">
-                Cherry blossom inspired default theme with support for custom themes and dark mode coming soon.
+                Cherry Blossom inspired default theme, with other themes coming slowly, and soon support for OpenCSS.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
