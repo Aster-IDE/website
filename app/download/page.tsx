@@ -49,7 +49,7 @@ async function getLatestStableRelease(): Promise<DownloadReleaseInfo | null> {
       headers: {
         Accept: "application/vnd.github+json",
       },
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -69,7 +69,7 @@ async function getMostRecentRelease(): Promise<DownloadReleaseInfo | null> {
       headers: {
         Accept: "application/vnd.github+json",
       },
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
 
     if (!response.ok) {

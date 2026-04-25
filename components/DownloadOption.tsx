@@ -9,6 +9,7 @@ interface DownloadOptionProps {
   icon: React.ReactNode;
   type: "commands" | "file";
   disabled?: boolean;
+  disabledLabel?: string;
   fileType?: string;
   downloadUrl?: string;
   instructions?: React.ReactNode;
@@ -20,6 +21,7 @@ export default function DownloadOption({
   icon,
   type,
   disabled = false,
+  disabledLabel = "Coming Soon",
   fileType,
   downloadUrl,
   instructions,
@@ -48,7 +50,7 @@ export default function DownloadOption({
         </div>
         <div className="flex items-center gap-3">
           {disabled && (
-            <span className="text-xs text-muted-foreground">Coming Soon</span>
+            <span className="text-xs text-muted-foreground">{disabledLabel}</span>
           )}
           {!disabled && (
             <svg

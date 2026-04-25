@@ -458,6 +458,7 @@ export default function DownloadsClient({
             fileType="DMG"
             downloadUrl={macosUrl ?? undefined}
             disabled={!macosUrl}
+            disabledLabel="Building"
           />
 
           <DownloadOption
@@ -468,6 +469,7 @@ export default function DownloadsClient({
             fileType="EXE"
             downloadUrl={windowsUrl ?? undefined}
             disabled={!windowsUrl}
+            disabledLabel="Building"
           />
 
           <p className="px-1 text-xs text-muted-foreground">
@@ -476,11 +478,11 @@ export default function DownloadsClient({
         </div>
       </div>
 
-      <div>
-        <h2 className="mb-3 uppercase font-bold text-white/95 text-sm tracking-wider">
+      <div className="space-y-4">
+        <h2 className="mb-1 uppercase font-bold text-white/95 text-sm tracking-wider">
           Additional info
         </h2>
-        <div className="space-y-3 mb-4">
+        <div className="space-y-3">
           <DownloadOption
             title="Development Build"
             description={

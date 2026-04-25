@@ -10,6 +10,7 @@ interface Petal {
   duration: number;
   delay: number;
   sway: number;
+  variant: number;
 }
 
 function mulberry32(seed: number) {
@@ -30,19 +31,28 @@ function generatePetals(count: number, seed = 12345): Petal[] {
     duration: rand() * 8 + 12,
     delay: rand() * 10,
     sway: rand() * 40 - 20,
+    variant: Math.floor(rand() * 4),
   }));
 }
 
-function PetalShape({ size }: { size: number }) {
+function PetalShape({ size, variant }: { size: number; variant: number }) {
+  const paths = [
+    "M2 12C6 6 14 4 20 8C24 11 24 17 19 21C13 25 5 22 2 12Z",
+    "M3 4H16C21 4 24 8 22 13C19 20 10 23 4 19C1 17 0 12 1 9C1 7 2 5 3 4Z",
+    "M2 10C6 5 13 4 18 8C22 11 22 17 18 21C13 25 6 22 2 16C1 14 1 12 2 10Z",
+    "M2 13C7 7 14 5 20 9L15 13L20 17C14 22 7 24 2 18Z",
+  ];
+
+  const path = paths[variant] ?? paths[0];
+
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 16 24"
-      fill="currentColor"
-      className="text-[#FFB7C5]/50"
+      viewBox="0 0 24 32"
+      fill="none"
     >
-      <path d="M8 2 C8 2, 2 8, 2 15 C2 20, 6 22, 8 23 C10 22, 14 20, 14 15 C14 8, 8 2, 8 2 Z" />
+      <path d={path} fill="#EA7C96" fillOpacity="0.82" />
     </svg>
   );
 }
@@ -91,7 +101,7 @@ export default function CherryBlossom({ count = 20 }: { count?: number }) {
             },
           }}
         >
-          <PetalShape size={petal.size} />
+          <PetalShape size={petal.size} variant={petal.variant} />
         </motion.div>
       ))}
     </div>
