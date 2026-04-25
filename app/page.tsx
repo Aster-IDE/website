@@ -73,7 +73,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 py-20 relative z-10 bg-accent/20">
+      <section className="relative z-10 border-y border-border/60 bg-accent/35 px-4 py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-8 text-center text-3xl font-semibold">Why Rust?</h2>
           <div className="grid gap-8 md:grid-cols-2 items-center">
@@ -159,7 +159,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 py-20 relative z-10 bg-accent/20">
+      <section className="relative z-10 border-y border-primary/20 bg-primary/8 px-4 py-20">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-4 text-3xl font-semibold">Open Source</h2>
           <p className="mb-8 text-muted-foreground">
