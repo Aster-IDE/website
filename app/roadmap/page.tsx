@@ -78,7 +78,7 @@ export default async function RoadmapPage() {
           <div className="mt-12 text-center">
             <Link
               href="/download"
-              className="inline-flex items-center gap-2 rounded-full bg-[#553746] px-6 py-3 text-[#FFEBF5] font-medium transition-colors hover:brightness-95"
+              className="btn-ide btn-ide-pill inline-flex items-center gap-2 px-6 py-3"
             >
               Download AsterIDE
             </Link>

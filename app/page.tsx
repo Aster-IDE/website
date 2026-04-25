@@ -21,7 +21,7 @@ export default function Home() {
         <div className="mt-10 flex gap-4">
           <Link
             href="/download"
-            className="rounded-full bg-[#553746] px-6 py-3 text-[#FFEBF5] font-medium transition-colors hover:brightness-95"
+            className="btn-ide btn-ide-pill px-6 py-3"
           >
             Download
           </Link>
@@ -168,7 +168,7 @@ export default function Home() {
           <div className="flex justify-center gap-4 flex-wrap">
             <Link
               href="https://github.com/Aster-IDE/AsterIDE"
-              className="rounded-full bg-[#553746] px-6 py-3 text-[#FFEBF5] font-medium transition-colors hover:brightness-95"
+              className="btn-ide btn-ide-pill px-6 py-3"
             >
               Star on GitHub
             </Link>
@@ -200,7 +200,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section>
+
     </div>
   );
 }

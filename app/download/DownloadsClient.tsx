@@ -126,7 +126,7 @@ export default function DownloadsClient({
           {release.linuxUrl && (
             <a
               href={release.linuxUrl}
-              className="inline-flex items-center gap-2 rounded-md bg-[#553746] px-3 py-2 text-xs font-medium text-[#FFEBF5] transition-colors hover:brightness-95"
+              className="btn-ide gap-2 px-3 py-2 text-xs"
             >
               {prefix} Linux (.appimage)
             </a>
@@ -134,7 +134,7 @@ export default function DownloadsClient({
           {release.macosUrl && (
             <a
               href={release.macosUrl}
-              className="inline-flex items-center gap-2 rounded-md bg-[#553746] px-3 py-2 text-xs font-medium text-[#FFEBF5] transition-colors hover:brightness-95"
+              className="btn-ide gap-2 px-3 py-2 text-xs"
             >
               {prefix} macOS (.dmg)
             </a>
@@ -142,7 +142,7 @@ export default function DownloadsClient({
           {release.windowsUrl && (
             <a
               href={release.windowsUrl}
-              className="inline-flex items-center gap-2 rounded-md bg-[#553746] px-3 py-2 text-xs font-medium text-[#FFEBF5] transition-colors hover:brightness-95"
+              className="btn-ide gap-2 px-3 py-2 text-xs"
             >
               {prefix} Windows (.exe)
             </a>
@@ -164,7 +164,7 @@ export default function DownloadsClient({
     <>
       <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
       <div className="space-y-4">
-        <h2 className="mb-1 uppercase font-bold text-white/95 text-sm tracking-wider">
+        <h2 className="mb-1 uppercase font-bold text-foreground/95 text-sm tracking-wider">
           Download for
         </h2>
         <div className="space-y-3">
@@ -479,7 +479,7 @@ export default function DownloadsClient({
       </div>
 
       <div className="space-y-4">
-        <h2 className="mb-1 uppercase font-bold text-white/95 text-sm tracking-wider">
+        <h2 className="mb-1 uppercase font-bold text-foreground/95 text-sm tracking-wider">
           Additional info
         </h2>
         <div className="space-y-3">
@@ -527,7 +527,7 @@ export default function DownloadsClient({
                       The source code for {releaseLabel} can be found on GitHub.
                     </p>
                     <a
-                      className="bg-[#553746] font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-[#FFEBF5] text-center text-sm"
+                      className="btn-ide mt-4 px-5 py-2 text-center text-sm"
                       href={sourceTarballUrl}
                     >
                       Download .tar.gz
