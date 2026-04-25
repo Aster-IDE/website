@@ -487,7 +487,7 @@ export default function DownloadsClient({
             title="Development Build"
             description={
               isDevSynced
-                ? `${devReleaseLabel} (sycned with stable)`
+                ? `${devReleaseLabel} (synced with stable)`
                 : `${devReleaseLabel}`
             }
             icon={<FaCodeBranch className="text-foreground/70 w-5 h-5" />}
@@ -504,41 +504,39 @@ export default function DownloadsClient({
               </div>
             )}
           />
+          <div className="border border-border bg-card rounded-md overflow-hidden">
+            <button
+              className="w-full cursor-pointer px-4 py-3 text-center text-base font-semibold transition-colors hover:bg-accent/30"
+              onClick={() => setSourceCodeOpen(!sourceCodeOpen)}
+            >
+              Source Code
+            </button>
 
-        </div>
-
-        <div className="border border-border bg-card rounded-md overflow-hidden pb-1">
-          <button
-            className="text-base font-semibold text-center cursor-pointer w-full pt-3 pb-2 hover:bg-accent/30 transition-colors"
-            onClick={() => setSourceCodeOpen(!sourceCodeOpen)}
-          >
-            Source Code
-          </button>
-
-          <AnimatePresence initial={false}>
-            {sourceCodeOpen && (
-              <motion.div
-                key="source"
-                initial={{ height: 0, opacity: 0, y: -10 }}
-                animate={{ height: "auto", opacity: 1, y: 0 }}
-                exit={{ height: 0, opacity: 0, y: -10 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="overflow-hidden"
-              >
-                <div className="flex flex-col p-3 pb-2 pt-0">
-                  <p className="text-sm text-muted-foreground">
-                    The source code for {releaseLabel} can be found on GitHub.
-                  </p>
-                  <a
-                    className="bg-[#553746] font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-[#FFEBF5] text-center text-sm"
-                    href={sourceTarballUrl}
-                  >
-                    Download .tar.gz
-                  </a>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            <AnimatePresence initial={false}>
+              {sourceCodeOpen && (
+                <motion.div
+                  key="source"
+                  initial={{ height: 0, opacity: 0, y: -10 }}
+                  animate={{ height: "auto", opacity: 1, y: 0 }}
+                  exit={{ height: 0, opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-col p-3 pb-2 pt-0">
+                    <p className="text-sm text-muted-foreground">
+                      The source code for {releaseLabel} can be found on GitHub.
+                    </p>
+                    <a
+                      className="bg-[#553746] font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-[#FFEBF5] text-center text-sm"
+                      href={sourceTarballUrl}
+                    >
+                      Download .tar.gz
+                    </a>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
