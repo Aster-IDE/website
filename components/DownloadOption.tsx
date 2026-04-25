@@ -87,7 +87,7 @@ export default function DownloadOption({
               {type === "file" && fileType && (
                 <a
                   href={downloadUrl || "#"}
-                  className="inline-flex items-center gap-2 rounded-md bg-[#553746] px-4 py-2 text-sm font-medium text-[#FFEBF5] transition-colors hover:brightness-95"
+                  className="btn-ide gap-2 px-4 py-2 text-sm"
                 >
                   Download .{fileType.toLowerCase()}
                 </a>

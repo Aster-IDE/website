@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +19,19 @@ export const metadata: Metadata = {
   description: "A Simple Text Editor written in Rust.",
 };
 
+const themeInitScript = `
+(() => {
+  const key = "theme-mode";
+  const root = document.documentElement;
+  const saved = localStorage.getItem(key);
+  const mode = saved === "light" || saved === "dark" || saved === "system" ? saved : "system";
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const resolved = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
+  root.classList.toggle("dark", resolved === "dark");
+  root.dataset.theme = mode;
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,8 +40,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <header className="border-b border-zinc-200 px-4 py-4 dark:border-zinc-800">
           <nav className="mx-auto flex max-w-5xl items-center justify-between">
@@ -44,6 +62,7 @@ export default function RootLayout({
               <Link href="https://github.com/Aster-IDE/AsterIDE" className="text-sm font-medium hover:underline">
                 GitHub
               </Link>
+              <ThemeToggle />
             </div>
           </nav>
         </header>
