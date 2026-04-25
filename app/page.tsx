@@ -200,26 +200,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      <footer className="px-4 py-8 relative z-10 border-t border-border">
-        <div className="mx-auto max-w-6xl flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-muted-foreground">
-            Made with 💝 and Rust.
-          </div>
-          <div className="flex gap-6 text-sm">
-            <Link href="/download" className="text-muted-foreground hover:text-foreground transition-colors">
-              Download
-            </Link>
-            <Link href="https://github.com/Aster-IDE/AsterIDE" className="text-muted-foreground hover:text-foreground transition-colors">
-              GitHub
-            </Link>
-            <Link href="https://github.com/Aster-IDE/AsterIDE/releases" className="text-muted-foreground hover:text-foreground transition-colors">
-              Releases
-            </Link>
-          </div>
-        </div>
-      </footer>
+      </section>
     </div>
   );
 }
+
