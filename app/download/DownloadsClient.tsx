@@ -1,6 +1,6 @@
 "use client";
 
-import { FaLinux, FaApple, FaWindows } from "react-icons/fa";
+import { FaLinux, FaApple, FaWindows, FaCodeBranch } from "react-icons/fa";
 import { SiNixos } from "react-icons/si";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
@@ -10,7 +10,25 @@ import DownloadOption from "@/components/DownloadOption";
 
 type NixOption = "flake" | "configuration";
 
-export default function DownloadsClient() {
+type DownloadReleaseInfo = {
+  version: string;
+  macosUrl: string | null;
+  windowsUrl: string | null;
+  linuxUrl: string | null;
+  sourceTarballUrl: string | null;
+};
+
+interface DownloadsClientProps {
+  latestRelease: DownloadReleaseInfo | null;
+  latestDevRelease: DownloadReleaseInfo | null;
+  isDevSynced: boolean;
+}
+
+export default function DownloadsClient({
+  latestRelease,
+  latestDevRelease,
+  isDevSynced,
+}: DownloadsClientProps) {
   const [isCopied, setIsCopied] = useState(false);
   const [xattrCopied, setXattrCopied] = useState(false);
   const [sourceCodeOpen, setSourceCodeOpen] = useState(false);
@@ -81,6 +99,66 @@ export default function DownloadsClient() {
       }
     };
   }, []);
+
+  const linuxUrl = latestRelease?.linuxUrl ?? null;
+  const macosUrl = latestRelease?.macosUrl ?? null;
+  const windowsUrl = latestRelease?.windowsUrl ?? null;
+  const sourceTarballUrl =
+    latestRelease?.sourceTarballUrl ?? "https://github.com/Aster-IDE/AsterIDE/releases/latest";
+  const releaseLabel = latestRelease?.version ?? "latest stable";
+  const devReleaseLabel = latestDevRelease?.version ?? "dev";
+
+  const renderReleaseLinks = (release: DownloadReleaseInfo | null, prefix: string) => {
+    if (!release) {
+      return (
+        <p className="text-sm text-muted-foreground">
+          No release data is currently available.
+        </p>
+      );
+    }
+
+    return (
+      <div className="space-y-3">
+        <p className="text-sm text-muted-foreground">
+          Tag: <span className="text-foreground font-medium">{release.version}</span>
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {release.linuxUrl && (
+            <a
+              href={release.linuxUrl}
+              className="inline-flex items-center gap-2 rounded-md bg-[#553746] px-3 py-2 text-xs font-medium text-[#FFEBF5] transition-colors hover:brightness-95"
+            >
+              {prefix} Linux (.appimage)
+            </a>
+          )}
+          {release.macosUrl && (
+            <a
+              href={release.macosUrl}
+              className="inline-flex items-center gap-2 rounded-md bg-[#553746] px-3 py-2 text-xs font-medium text-[#FFEBF5] transition-colors hover:brightness-95"
+            >
+              {prefix} macOS (.dmg)
+            </a>
+          )}
+          {release.windowsUrl && (
+            <a
+              href={release.windowsUrl}
+              className="inline-flex items-center gap-2 rounded-md bg-[#553746] px-3 py-2 text-xs font-medium text-[#FFEBF5] transition-colors hover:brightness-95"
+            >
+              {prefix} Windows (.exe)
+            </a>
+          )}
+          {release.sourceTarballUrl && (
+            <a
+              href={release.sourceTarballUrl}
+              className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground transition-colors hover:bg-accent/30"
+            >
+              {prefix} source (.tar.gz)
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -368,7 +446,8 @@ export default function DownloadsClient() {
             icon={<FaLinux className="text-foreground/70 w-5 h-5" />}
             type="file"
             fileType="AppImage"
-            disabled={true}
+            downloadUrl={linuxUrl ?? undefined}
+            disabled={!linuxUrl}
           />
 
           <DownloadOption
@@ -377,8 +456,8 @@ export default function DownloadsClient() {
             icon={<FaApple className="text-foreground/70 w-5 h-5" />}
             type="file"
             fileType="DMG"
-            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.2-windows-x86_64/AsterIDE.dmg"
-            disabled={false}
+            downloadUrl={macosUrl ?? undefined}
+            disabled={!macosUrl}
           />
 
           <DownloadOption
@@ -387,9 +466,13 @@ export default function DownloadsClient() {
             icon={<FaWindows className="text-foreground/70 w-5 h-5" />}
             type="file"
             fileType="EXE"
-            downloadUrl="https://github.com/Aster-IDE/AsterIDE/releases/download/v0.1.2-windows-x86_64/asteride.exe"
-            disabled={false}
+            downloadUrl={windowsUrl ?? undefined}
+            disabled={!windowsUrl}
           />
+
+          <p className="px-1 text-xs text-muted-foreground">
+            <span className="text-foreground/90">{releaseLabel}</span>
+          </p>
         </div>
       </div>
 
@@ -397,6 +480,31 @@ export default function DownloadsClient() {
         <h2 className="mb-3 uppercase font-bold text-white/95 text-sm tracking-wider">
           Additional info
         </h2>
+        <div className="space-y-3 mb-4">
+          <DownloadOption
+            title="Development Build"
+            description={
+              isDevSynced
+                ? `${devReleaseLabel} (sycned with stable)`
+                : `${devReleaseLabel}`
+            }
+            icon={<FaCodeBranch className="text-foreground/70 w-5 h-5" />}
+            type="commands"
+            disabled={!latestDevRelease}
+            instructions={(
+              <div className="space-y-3">
+                <p className="text-sm text-muted-foreground">
+                  {isDevSynced
+                    ? "Dev branch is synced with the latest release."
+                    : "This is a dev build and may be unstable."}
+                </p>
+                {renderReleaseLinks(latestDevRelease, "Dev")}
+              </div>
+            )}
+          />
+
+        </div>
+
         <div className="border border-border bg-card rounded-md overflow-hidden pb-1">
           <button
             className="text-base font-semibold text-center cursor-pointer w-full pt-3 pb-2 hover:bg-accent/30 transition-colors"
@@ -417,11 +525,11 @@ export default function DownloadsClient() {
               >
                 <div className="flex flex-col p-3 pb-2 pt-0">
                   <p className="text-sm text-muted-foreground">
-                    The source code can be found simply on its GitHub.
+                    The source code for {releaseLabel} can be found on GitHub.
                   </p>
                   <a
                     className="bg-[#553746] font-semibold hover:brightness-95 py-2 px-5 mt-4 rounded text-[#FFEBF5] text-center text-sm"
-                    href="https://github.com/Aster-IDE/AsterIDE/archive/refs/tags/v0.1.2-windows-x86_64.tar.gz"
+                    href={sourceTarballUrl}
                   >
                     Download .tar.gz
                   </a>
