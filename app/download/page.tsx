@@ -1,4 +1,11 @@
 import DownloadsClient from "./DownloadsClient";
+import { Instrument_Serif } from "next/font/google";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+});
 
 export const metadata = {
   title: "AsterIDE - Downloads",
@@ -99,7 +106,12 @@ export default async function DownloadPage() {
   return (
     <div className="flex flex-col flex-1 px-4 py-12">
       <div className="mx-auto w-full max-w-5xl">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">Downloads</h1>
+        <h1
+          className={`${instrumentSerif.className} text-3xl font-[900] tracking-tight text-primary italic`}
+          style={{ fontWeight: 900, fontStyle: "italic" }}
+        >
+          Downloads
+        </h1>
         <p className="mt-2 text-sm text-zinc-400">
           Choose your platform below to get the latest builds or installers.
         </p>

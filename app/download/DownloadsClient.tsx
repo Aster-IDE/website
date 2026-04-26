@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Copy } from "lucide-react";
 import Image from "next/image";
+import { Instrument_Serif } from "next/font/google";
 import DownloadOption from "@/components/DownloadOption";
 
 type NixOption = "flake" | "configuration";
@@ -23,6 +24,12 @@ interface DownloadsClientProps {
   latestDevRelease: DownloadReleaseInfo | null;
   isDevSynced: boolean;
 }
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+});
 
 export default function DownloadsClient({
   latestRelease,
@@ -164,7 +171,10 @@ export default function DownloadsClient({
     <>
       <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
       <div className="space-y-4">
-        <h2 className="mb-1 uppercase font-bold text-foreground/95 text-sm tracking-wider">
+        <h2
+          className={`${instrumentSerif.className} mb-1 text-sm font-[900] uppercase tracking-wider text-foreground/95`}
+          style={{ fontWeight: 900 }}
+        >
           Download for
         </h2>
         <div className="space-y-3">
@@ -479,7 +489,10 @@ export default function DownloadsClient({
       </div>
 
       <div className="space-y-4">
-        <h2 className="mb-1 uppercase font-bold text-foreground/95 text-sm tracking-wider">
+        <h2
+          className={`${instrumentSerif.className} mb-1 text-sm font-[900] uppercase tracking-wider text-foreground/95`}
+          style={{ fontWeight: 900 }}
+        >
           Additional info
         </h2>
         <div className="space-y-3">
