@@ -76,6 +76,12 @@ export default function RootLayout({
               >
                 GitHub
               </Link>
+              <Link
+                href="/credits"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Credits
+              </Link>
               <ThemeToggle />
             </div>
           </nav>

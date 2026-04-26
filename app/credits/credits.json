@@ -1,0 +1,57 @@
+{
+  "projects": [
+    {
+      "name": "AsterIDE",
+      "description": "A Simple Text Editor written in Rust.",
+      "contributors": [
+        {
+          "github": "playfairs",
+          "role": "Primary Maintainer",
+          "contributions": ["Core Architecture", "Rust Implementation"]
+        },
+        {
+          "github": "invra",
+          "role": "Maintainer",
+          "contributions": ["GitHub Workflows", "Nix Flake"]
+        },
+        {
+          "github": "tazldied",
+          "role": "Tester",
+          "contributions": ["Windows Testing"]
+        }
+      ]
+    },
+    {
+      "name": "asteride.dev",
+      "description": "The Official Website for AsterIDE.",
+      "contributors": [
+        {
+          "github": "playfairs",
+          "role": "Primary Maintainer",
+          "contributions": ["Initial UI Implementation", "Downloads Page", "Roadmap", "Web Redesign"]
+        },
+        {
+          "github": "tazldied",
+          "role": "Web Designer & API",
+          "contributions": ["Web Redesign", "Dynamic Downloads"]
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "description": "Blog page for AsterIDE.",
+      "contributors": [
+        {
+          "github": "tazldied",
+          "role": "Maintainer",
+          "contributions": ["Blog Setup", "Web Design"]
+        },
+        {
+          "github": "playfairs",
+          "role": "Maintainer",
+          "contributions": ["Articles", "Minor Updates & Fixes"]
+        }
+      ]
+    }
+  ]
+}
