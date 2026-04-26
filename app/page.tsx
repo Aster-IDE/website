@@ -1,7 +1,14 @@
 import Link from "next/link";
+import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
 import PronunciationButton from "@/components/PronunciationButton";
 import { FaBolt, FaPalette, FaDesktop, FaKeyboard } from "react-icons/fa";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+});
 
 export default function Home() {
   return (
@@ -9,14 +16,35 @@ export default function Home() {
       <CherryBlossom count={25} />
       <section className="flex flex-col items-center justify-center px-4 py-24 text-center relative z-10">
         <div className="flex items-center gap-3">
-          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
+          <h1
+            className={`${instrumentSerif.className} text-7xl font-[900] tracking-tight text-primary italic sm:text-8xl`}
+            style={{ fontWeight: 900 }}
+          >
             AsterIDE
           </h1>
           <PronunciationButton />
         </div>
-        <p className="mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-          A Simple Text Editor written in Rust.
-          Built for Simplicity and Ease on the eyes.
+        <p
+          className={`${instrumentSerif.className} mt-6 max-w-4xl text-2xl leading-tight font-[800] text-muted-foreground sm:text-3xl`}
+          style={{ fontWeight: 800 }}
+        >
+          <span
+            className={`${instrumentSerif.className} text-primary italic sm:whitespace-nowrap`}
+            style={{ fontWeight: 900 }}
+          >
+            A Simple Text Editor
+          </span>{" "}
+          <span className="sm:whitespace-nowrap">written in </span>
+          <span
+            className={`${instrumentSerif.className} text-primary italic sm:whitespace-nowrap`}
+            style={{ fontWeight: 900 }}
+          >
+            Rust
+          </span>
+          .{" "}
+          <span className="sm:whitespace-nowrap">
+            Built for Simplicity and Ease on the eyes.
+          </span>
         </p>
         <div className="mt-10 flex gap-4">
           <Link
@@ -36,36 +64,41 @@ export default function Home() {
 
       <section className="px-4 py-20 relative z-10">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-4 text-center text-3xl font-semibold">Features</h2>
-          <p className="mb-12 text-center text-muted-foreground max-w-2xl mx-auto">
+          <h2
+            className={`${instrumentSerif.className} mb-4 text-center text-5xl font-[900] text-primary not-italic`}
+            style={{ fontWeight: 900, fontStyle: "normal" }}
+          >
+            Features
+          </h2>
+          <p className={`${instrumentSerif.className} mb-12 mx-auto max-w-2xl text-center text-xl text-muted-foreground`}>
             Built with performance and developer experience in mind
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaBolt /></div>
               <h3 className="mb-2 font-semibold">Blazing Fast</h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Native performance thanks to Rust. Instant file loading and smooth editing even with large files.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaPalette /></div>
               <h3 className="mb-2 font-semibold">Beautiful Themes</h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Cherry Blossom inspired default theme, with other themes coming slowly, and soon support for OpenCSS.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaDesktop /></div>
               <h3 className="mb-2 font-semibold">Cross Platform</h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Available for macOS, Windows, Nix, and coming to Linux soon.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaKeyboard /></div>
               <h3 className="mb-2 font-semibold">Vim-like Bindings</h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Familiar modal editing support with customizable keybindings for your workflow in the works.
               </p>
             </div>
@@ -75,28 +108,39 @@ export default function Home() {
 
       <section className="relative z-10 border-y border-border/60 bg-accent/35 px-4 py-20">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-8 text-center text-3xl font-semibold">Why Rust?</h2>
+          <h2
+            className={`${instrumentSerif.className} mb-8 text-center text-5xl font-[900] text-primary not-italic`}
+            style={{ fontWeight: 900, fontStyle: "normal" }}
+          >
+            Why Rust?
+          </h2>
           <div className="grid gap-8 md:grid-cols-2 items-center">
             <div className="space-y-4">
               <div className="flex gap-3">
                 <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm">1</div>
                 <div>
                   <h4 className="font-semibold">Memory Safety</h4>
-                  <p className="text-sm text-muted-foreground">Zero-cost abstractions with compile-time memory safety guarantees.</p>
+                  <p className="text-base text-muted-foreground">
+                    Zero-cost abstractions with compile-time memory safety guarantees.
+                  </p>
                 </div>
               </div>
               <div className="flex gap-3">
                 <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm">2</div>
                 <div>
                   <h4 className="font-semibold">Zero-Cost Abstractions</h4>
-                  <p className="text-sm text-muted-foreground">High-level ergonomics with the performance of hand-written C.</p>
+                  <p className="text-base text-muted-foreground">
+                    High-level ergonomics with the performance of hand-written C.
+                  </p>
                 </div>
               </div>
               <div className="flex gap-3">
                 <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm">3</div>
                 <div>
                   <h4 className="font-semibold">Fearless Concurrency</h4>
-                  <p className="text-sm text-muted-foreground">Parallel processing made safe and easy with the borrow checker.</p>
+                  <p className="text-base text-muted-foreground">
+                    Parallel processing made safe and easy with the borrow checker.
+                  </p>
                 </div>
               </div>
             </div>
@@ -124,14 +168,19 @@ export default function Home() {
 
       <section className="px-4 py-20 relative z-10">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-4 text-center text-3xl font-semibold">Coming Soon</h2>
-          <p className="mb-12 text-center text-muted-foreground max-w-2xl mx-auto">
+          <h2
+            className={`${instrumentSerif.className} mb-4 text-center text-5xl font-[900] text-primary not-italic`}
+            style={{ fontWeight: 900, fontStyle: "normal" }}
+          >
+            Coming Soon
+          </h2>
+          <p className={`${instrumentSerif.className} mb-12 mx-auto max-w-2xl text-center text-xl text-muted-foreground`}>
             The <Link href="/roadmap" className="text-[#FF82B4] hover:underline">roadmap</Link> ahead for AsterIDE
           </p>
           <div className="grid gap-8 sm:grid-cols-3">
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:border-[#553746]/50 transition-colors">
               <h3 className="mb-2 text-lg font-semibold">Source Control Management</h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Built-in{" "}
                 <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
                   Git
@@ -145,13 +194,13 @@ export default function Home() {
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:border-[#553746]/50 transition-colors">
               <h3 className="mb-2 text-lg font-semibold">Syntax Highlighting</h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Tree-sitter powered highlighting for 30+ programming languages with accurate parsing.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:border-[#553746]/50 transition-colors">
               <h3 className="mb-2 text-lg font-semibold">Extensibility</h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Plugin system for themes, language servers, and custom keybindings.
               </p>
             </div>
@@ -161,8 +210,13 @@ export default function Home() {
 
       <section className="relative z-10 border-y border-primary/20 bg-primary/8 px-4 py-20">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mb-4 text-3xl font-semibold">Open Source</h2>
-          <p className="mb-8 text-muted-foreground">
+          <h2
+            className={`${instrumentSerif.className} mb-4 text-5xl font-[900] text-primary not-italic`}
+            style={{ fontWeight: 900, fontStyle: "normal" }}
+          >
+            Open Source
+          </h2>
+          <p className={`${instrumentSerif.className} mb-8 text-xl text-muted-foreground`}>
             AsterIDE is and will always be free and open source. Built by the community, for the community.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
@@ -205,4 +259,3 @@ export default function Home() {
     </div>
   );
 }
-

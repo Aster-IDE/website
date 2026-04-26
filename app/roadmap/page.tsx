@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import { Instrument_Serif } from "next/font/google";  
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+});
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -38,7 +45,7 @@ export default async function RoadmapPage() {
           </div>
 
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-4xl font-bold">Roadmap</h1>
+            <h1 className={`${instrumentSerif.className} text-7xl font-[900] tracking-tight text-primary italic sm:text-8xl`}>Roadmap</h1>
             <a
               href="https://github.com/Aster-IDE/AsterIDE/blob/dev/ROADMAP.md"
               target="_blank"
