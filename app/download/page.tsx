@@ -29,6 +29,7 @@ type DownloadReleaseInfo = {
   macosUrl: string | null;
   windowsUrl: string | null;
   linuxUrl: string | null;
+  freebsdUrl: string | null;
   sourceTarballUrl: string | null;
 };
 
@@ -46,6 +47,7 @@ function mapRelease(release: GitHubRelease): DownloadReleaseInfo {
     macosUrl: pickAssetUrl(release.assets, [/\.dmg$/i]),
     windowsUrl: pickAssetUrl(release.assets, [/\.exe$/i]),
     linuxUrl: pickAssetUrl(release.assets, [/\.AppImage$/i]),
+    freebsdUrl: pickAssetUrl(release.assets, [/asteride-freebsd/i]),
     sourceTarballUrl: release.tarball_url || null,
   };
 }

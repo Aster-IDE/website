@@ -1,6 +1,6 @@
 "use client";
 
-import { FaLinux, FaApple, FaWindows, FaCodeBranch } from "react-icons/fa";
+import { FaLinux, FaApple, FaWindows, FaCodeBranch, FaFreebsd } from "react-icons/fa";
 import { SiNixos } from "react-icons/si";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
@@ -16,6 +16,7 @@ type DownloadReleaseInfo = {
   macosUrl: string | null;
   windowsUrl: string | null;
   linuxUrl: string | null;
+  freebsdUrl: string | null;
   sourceTarballUrl: string | null;
 };
 
@@ -110,6 +111,7 @@ export default function DownloadsClient({
   const linuxUrl = latestRelease?.linuxUrl ?? null;
   const macosUrl = latestRelease?.macosUrl ?? null;
   const windowsUrl = latestRelease?.windowsUrl ?? null;
+  const freebsdUrl = latestRelease?.freebsdUrl ?? null;
   const sourceTarballUrl =
     latestRelease?.sourceTarballUrl ?? "https://github.com/Aster-IDE/AsterIDE/releases/latest";
   const releaseLabel = latestRelease?.version ?? "latest stable";
@@ -479,6 +481,17 @@ export default function DownloadsClient({
             fileType="EXE"
             downloadUrl={windowsUrl ?? undefined}
             disabled={!windowsUrl}
+            disabledLabel="Building"
+          />
+
+          <DownloadOption
+            title="FreeBSD"
+            description="FreeBSD binary"
+            icon={<FaFreebsd className="text-foreground/70 w-5 h-5" />}
+            type="file"
+            fileType="Binary"
+            downloadUrl={freebsdUrl ?? undefined}
+            disabled={!freebsdUrl}
             disabledLabel="Building"
           />
 
