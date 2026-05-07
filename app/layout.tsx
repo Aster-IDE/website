@@ -59,8 +59,7 @@ export default function RootLayout({
               <HeaderBreadcrumb />
             </div>
             <div className="ml-auto flex items-center gap-4">
-              {/* Desktop navigation */}
-              <div className="hidden md:flex flex-wrap items-center justify-end gap-x-5 gap-y-2">
+              <div className="hidden md:flex flex-wrap items-center justify-end gap-x-3 gap-y-2">
                 <Link
                   href="/"
                   className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
@@ -80,24 +79,6 @@ export default function RootLayout({
                   GitHub
                 </Link>
                 <Link
-                  href="/credits"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Credits
-                </Link>
-                <Link
-                  href="/team"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Team
-                </Link>
-                <Link
-                  href="/faq"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  FAQ
-                </Link>
-                <Link
                   href="https://docs.asteride.dev"
                   className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
                 >
@@ -106,7 +87,6 @@ export default function RootLayout({
                 <ThemeToggle />
               </div>
               
-              {/* Mobile menu button and theme toggle */}
               <div className="flex items-center gap-4 md:hidden">
                 <ThemeToggle />
                 <MobileMenu />
@@ -127,7 +107,7 @@ export default function RootLayout({
               </span>
             </div>
             <div className="text-center text-xs text-muted-foreground sm:justify-self-center sm:whitespace-nowrap">
-              &copy; 2026 AsterIDE. This software follows the principles of the{" "}
+              &copy; 2026 AsterIDE. This software follows all principles of the{" "}
               <a
                 href="https://www.fsf.org/"
                 target="_blank"
@@ -138,24 +118,30 @@ export default function RootLayout({
               </a>
               .
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-self-end">
-              <Link
-                href="/download"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Download
-              </Link>
-              <Link
-                href="https://github.com/Aster-IDE/AsterIDE"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                GitHub
-              </Link>
+            <div className="flex text-xs flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:justify-self-end">
               <Link
                 href="https://github.com/Aster-IDE/AsterIDE/releases"
                 className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 Releases
+              </Link>
+              <Link
+                href="/credits"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Credits
+              </Link>
+              <Link
+                href="/team"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Team
+              </Link>
+              <Link
+                href="/faq"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                FAQ
               </Link>
               <Link
                 href="https://blog.asteride.dev"
