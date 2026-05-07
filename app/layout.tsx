@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import HeaderBreadcrumb from "@/components/HeaderBreadcrumb";
+import MobileMenu from "@/components/MobileMenu";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -49,58 +50,67 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <header className="border-b border-border px-4 py-5">
-          <nav className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-between gap-3 sm:items-center">
-            <div className="flex items-center gap-2">
+          <nav className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 sm:items-center">
+            <div className="flex items-center gap-2 flex-1 sm:flex-initial">
               <span
                 className="inline-block h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
                 aria-hidden
               />
               <HeaderBreadcrumb />
             </div>
-            <div className="ml-auto flex flex-wrap items-center justify-end gap-x-5 gap-y-2">
-              <Link
-                href="/"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Home
-              </Link>
-              <Link
-                href="/download"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Download
-              </Link>
-              <Link
-                href="https://github.com/Aster-IDE/AsterIDE"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                GitHub
-              </Link>
-              <Link
-                href="/credits"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Credits
-              </Link>
-              <Link
-                href="/team"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Team
-              </Link>
-              <Link
-                href="/faq"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                FAQ
-              </Link>
-              <Link
-                href="https://docs.asteride.dev"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Docs
-              </Link>
-              <ThemeToggle />
+            <div className="ml-auto flex items-center gap-4">
+              {/* Desktop navigation */}
+              <div className="hidden md:flex flex-wrap items-center justify-end gap-x-5 gap-y-2">
+                <Link
+                  href="/"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/download"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Download
+                </Link>
+                <Link
+                  href="https://github.com/Aster-IDE/AsterIDE"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  GitHub
+                </Link>
+                <Link
+                  href="/credits"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Credits
+                </Link>
+                <Link
+                  href="/team"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Team
+                </Link>
+                <Link
+                  href="/faq"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  FAQ
+                </Link>
+                <Link
+                  href="https://docs.asteride.dev"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Docs
+                </Link>
+                <ThemeToggle />
+              </div>
+              
+              {/* Mobile menu button and theme toggle */}
+              <div className="flex items-center gap-4 md:hidden">
+                <ThemeToggle />
+                <MobileMenu />
+              </div>
             </div>
           </nav>
         </header>
