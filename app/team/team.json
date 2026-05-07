@@ -1,0 +1,66 @@
+{
+  "members": [
+    {
+      "github": "playfairs",
+      "role": "Founder & Primary Maintainer",
+      "founder": true,
+      "bio": "Founded AsterIDE with the initial plan to make a silly text editor, which led to an actual project.",
+      "contributions": ["Core Architecture", "Rust Implementation", "UI/UX Design", "Web Development"],
+      "socials": [
+        {
+          "platform": "github",
+          "url": "https://github.com/playfairs",
+          "username": "playfairs"
+        },
+        {
+          "platform": "gitlab",
+          "url": "https://gitlab.com/playfairs",
+          "username": "playfairs"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://tiktok.com/@rosepinetheme",
+          "username": "@rosepinetheme"
+        },
+        {
+          "platform": "matrix",
+          "url": "https://matrix.to/#/@playfairs:matrix.org",
+          "username": "@playfairs"
+        }
+      ]
+    },
+    {
+      "github": "invra",
+      "role": "Maintainer",
+      "founder": false,
+      "bio": "Helps maintain the project infrastructure and helps with build systems and nix related stuff.",
+      "contributions": ["GitHub Workflows", "Nix Flake", "CI/CD", "Build Systems"],
+      "socials": [
+        {
+          "platform": "github",
+          "url": "https://github.com/invra",
+          "username": "invra"
+        },
+        {
+          "platform": "gitlab",
+          "url": "https://gitlab.com/invra",
+          "username": "invra"
+        }
+      ]
+    },
+    {
+      "github": "tazldied",
+      "role": "Web Maintainer",
+      "founder": false,
+      "bio": "Assured that the Windows version of AsterIDE did in fact compile, and created the blog page, and redesigned parts of the main website.",
+      "contributions": ["Windows Testing", "Quality Assurance", "UI/UX Design", "Web Development", "Blog Creation"],
+      "socials": [
+        {
+          "platform": "github",
+          "url": "https://github.com/tazldied",
+          "username": "tazldied"
+        }
+      ]
+    }
+  ]
+}
