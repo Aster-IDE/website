@@ -11,6 +11,8 @@ export default function HeaderBreadcrumb() {
     "/download": { href: "/download", label: "Download" },
     "/roadmap": { href: "/roadmap", label: "Roadmap" },
     "/credits": { href: "/credits", label: "Credits" },
+    "/team": { href: "/team", label: "Team" },
+    "/faq": { href: "/faq", label: "FAQ" },
   };
   const crumb = crumbMap[pathname];
 

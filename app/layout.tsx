@@ -83,6 +83,18 @@ export default function RootLayout({
                 Credits
               </Link>
               <Link
+                href="/team"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Team
+              </Link>
+              <Link
+                href="/faq"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                FAQ
+              </Link>
+              <Link
                 href="https://docs.asteride.dev"
                 className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
