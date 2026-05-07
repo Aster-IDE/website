@@ -59,6 +59,14 @@ export default function Home() {
           >
             GitHub
           </Link>
+          <a
+            href="https://matrix.to/#/#asteride:matrix.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-zinc-300 px-6 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
+          >
+            Community
+          </a>
         </div>
       </section>
 
@@ -68,38 +76,38 @@ export default function Home() {
             className={`${instrumentSerif.className} mb-4 text-center text-5xl font-[900] text-primary not-italic`}
             style={{ fontWeight: 900, fontStyle: "normal" }}
           >
-            Features
+            What Sets Us Apart
           </h2>
           <p className={`${instrumentSerif.className} mb-12 mx-auto max-w-2xl text-center text-xl text-muted-foreground`}>
-            Built with performance and developer experience in mind
+            A Text Editor that respects both your time and your eyes.
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaBolt /></div>
-              <h3 className="mb-2 font-semibold">Blazing Fast</h3>
+              <h3 className="mb-2 font-semibold">Responsive</h3>
               <p className="text-base text-muted-foreground">
-                Native performance thanks to Rust. Instant file loading and smooth editing even with large files.
+                Open files in milliseconds. Edit large files without lag. Your time is valuable.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaPalette /></div>
-              <h3 className="mb-2 font-semibold">Beautiful Themes</h3>
+              <h3 className="mb-2 font-semibold">Eye Candy</h3>
               <p className="text-base text-muted-foreground">
-                Cherry Blossom inspired default theme, with other themes coming slowly, and soon support for OpenCSS.
+                Cherry Blossom and Rosé Pine themes designed for long coding sessions. No eye strain, just focus.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaDesktop /></div>
               <h3 className="mb-2 font-semibold">Cross Platform</h3>
               <p className="text-base text-muted-foreground">
-                Available for macOS, Windows, Nix, and coming to Linux soon.
+                AsterIDE supports macOS, Windows, FreeBSD, and Nix. Soon coming to Linux.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
               <div className="mb-3 text-2xl text-[#FF82B4]"><FaKeyboard /></div>
-              <h3 className="mb-2 font-semibold">Vim-like Bindings</h3>
+              <h3 className="mb-2 font-semibold">Optimized</h3>
               <p className="text-base text-muted-foreground">
-                Familiar modal editing support with customizable keybindings for your workflow in the works.
+                Because AsterIDE is made in Rust, it makes it easy to opitimize memory usage.
               </p>
             </div>
           </div>
@@ -112,55 +120,55 @@ export default function Home() {
             className={`${instrumentSerif.className} mb-8 text-center text-5xl font-[900] text-primary not-italic`}
             style={{ fontWeight: 900, fontStyle: "normal" }}
           >
-            Why Rust?
+            OUR Philosophy
           </h2>
-          <div className="grid gap-8 md:grid-cols-2 items-center">
+          <div className="grid gap-6 md:grid-cols-2 items-start">
             <div className="space-y-4">
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm">1</div>
+                <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm flex-shrink-0 mt-0.5">1</div>
                 <div>
-                  <h4 className="font-semibold">Memory Safety</h4>
-                  <p className="text-base text-muted-foreground">
-                    Zero-cost abstractions with compile-time memory safety guarantees.
+                  <h4 className="font-semibold text-base mb-1">Simplicity First, Features Second</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Every feature must be able to justify its existence. If it doesn&apos;t make editing better or easier, it doesn&apos;t belong.
                   </p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm">2</div>
+                <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm flex-shrink-0 mt-0.5">2</div>
                 <div>
-                  <h4 className="font-semibold">Zero-Cost Abstractions</h4>
-                  <p className="text-base text-muted-foreground">
-                    High-level ergonomics with the performance of hand-written C.
+                  <h4 className="font-semibold text-base mb-1">Built to Last</h4>
+                  <p className="text-sm text-muted-foreground">
+                    No telemetry. No forced updates. No Accounts. Just a minimal application built for long term use.
                   </p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm">3</div>
+                <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm flex-shrink-0 mt-0.5">3</div>
                 <div>
-                  <h4 className="font-semibold">Fearless Concurrency</h4>
-                  <p className="text-base text-muted-foreground">
-                    Parallel processing made safe and easy with the borrow checker.
+                  <h4 className="font-semibold text-base mb-1">Easy on the Eyes</h4>
+                  <p className="text-sm text-muted-foreground">
+                    A Text Editor shouldn&apos;t strain your eyes, when you&apos;re sitting there coding for hours, you don&apos;t want your eyes to hurt, so we made sure that wouldn&apos;t happen.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#553746] flex items-center justify-center text-[#FFEBF5] font-bold text-sm flex-shrink-0 mt-0.5">4</div>
+                <div>
+                  <h4 className="font-semibold text-base mb-1">Community Driven</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Because AsterIDE is Open Source, you&apos;re part of the project. The code is Public.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6 font-mono text-sm">
-              <div className="text-muted-foreground mb-2">{"// Rust in action"}</div>
-              <pre className="text-foreground/90">
-{`fn main() {
-    println!("Hello, AsterIDE!");
-    
-    // Memory safe by default
-    let text = String::from("Edit freely");
-    println!("{}", text);
-    
-    // Zero-cost abstractions
-    let lines: Vec<&str> = text
-        .lines()
-        .filter(|l| !l.is_empty())
-        .collect();
-}`}
-              </pre>
+            <div className="rounded-xl border border-border bg-card p-4">
+              <div className="text-muted-foreground mb-2 text-xs font-mono">What we believe.</div>
+              <blockquote className="text-foreground/90 italic text-sm leading-relaxed border-l-4 border-[#FF82B4] pl-3">
+                &ldquo;I feel like a text editor should be exactly what it&apos;s name suggests, it doesn&apos;t need to be overcomplicated, it doesn&apos;t need to be filled with all sorts of random features no one will use, it just needs to be able to edit text, and do so without being too difficult.&rdquo;
+              </blockquote>
+              <div className="mt-3 text-right text-xs text-muted-foreground">
+                — The Founder
+              </div>
             </div>
           </div>
         </div>

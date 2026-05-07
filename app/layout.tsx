@@ -93,45 +93,51 @@ export default function RootLayout({
           </nav>
         </header>
         {children}
-        <footer className="mt-auto border-t border-zinc-200 px-4 py-6 dark:border-zinc-800">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-3 text-sm sm:grid-cols-[1fr_auto_1fr]">
-            <div className="text-center text-muted-foreground sm:justify-self-start sm:text-left">
-              Made with 💝 and Rust.
+        <footer className="mt-auto border-t border-border px-4 py-5">
+          <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-3 text-sm sm:grid-cols-[1fr_auto_1fr]">
+            <div className="flex items-center justify-center gap-2 sm:justify-self-start">
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
+                aria-hidden
+              />
+              <span className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground">
+                Made with 💝 and Rust
+              </span>
             </div>
-            <div className="text-center text-zinc-500 sm:justify-self-center sm:whitespace-nowrap">
+            <div className="text-center text-xs text-muted-foreground sm:justify-self-center sm:whitespace-nowrap">
               &copy; 2026 AsterIDE. This software follows the principles of the{" "}
               <a
                 href="https://www.fsf.org/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-zinc-700 dark:hover:text-zinc-300"
+                className="text-muted-foreground transition-colors hover:text-primary"
               >
                 Free Software Foundation
               </a>
               .
             </div>
-            <div className="flex justify-center gap-6 sm:justify-self-end sm:justify-end">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-self-end">
               <Link
                 href="/download"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 Download
               </Link>
               <Link
                 href="https://github.com/Aster-IDE/AsterIDE"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 GitHub
               </Link>
               <Link
                 href="https://github.com/Aster-IDE/AsterIDE/releases"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 Releases
               </Link>
-                            <Link
+              <Link
                 href="https://blog.asteride.dev"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 Blog
               </Link>

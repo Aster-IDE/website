@@ -16,12 +16,16 @@ interface Contributor {
   github: string;
   role: string;
   contributions: string[];
+  founder?: boolean;
 }
 
 interface Project {
   name: string;
   description: string;
   contributors: Contributor[];
+  repo?: string;
+  website?: string;
+  source?: string;
 }
 
 export default function CreditsPage() {
@@ -53,7 +57,41 @@ export default function CreditsPage() {
           <div className="space-y-12">
             {projects.map((project: Project) => (
               <section key={project.name}>
-                <h2 className={`${instrumentSerif.className} mb-1 text-lg font-[900] uppercase tracking-wider text-foreground/95`}>{project.name}</h2>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-1">
+                  {project.website ? (
+                    <a
+                      href={project.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${instrumentSerif.className} text-lg font-[900] uppercase tracking-wider text-foreground/95 hover:text-primary transition-colors`}
+                    >
+                      {project.name}
+                    </a>
+                  ) : project.repo ? (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${instrumentSerif.className} text-lg font-[900] uppercase tracking-wider text-foreground/95 hover:text-primary transition-colors`}
+                    >
+                      {project.name}
+                    </a>
+                  ) : (
+                    <h2 className={`${instrumentSerif.className} text-lg font-[900] uppercase tracking-wider text-foreground/95`}>
+                      {project.name}
+                    </h2>
+                  )}
+                  {project.source && (
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      (source)
+                    </a>
+                  )}
+                </div>
                 <p className="text-muted-foreground text-sm mb-6">
                   {project.description}
                 </p>
@@ -79,6 +117,11 @@ export default function CreditsPage() {
                           <span className="font-medium text-foreground truncate">
                             {contributor.github}
                           </span>
+                          {contributor.founder && (
+                            <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+                              Founder
+                            </span>
+                          )}
                           <FaGithub size={14} className="text-muted-foreground flex-shrink-0" />
                         </div>
                         <p className="text-xs text-muted-foreground mb-2">{contributor.role}</p>

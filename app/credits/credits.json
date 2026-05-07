@@ -1,12 +1,27 @@
 {
   "projects": [
     {
+      "name": "Aster",
+      "repo": "https://github.com/Aster-IDE/Aster",
+      "description": "A Simpler Text Editor written in Rust.",
+      "contributors": [
+        {
+          "github": "playfairs",
+          "role": "Founder & Primary Maintainer",
+          "founder": true,
+          "contributions": ["Core Architecture", "Rust Implementation"]
+        }
+      ]
+    },
+    {
       "name": "AsterIDE",
+      "repo": "https://github.com/Aster-IDE/AsterIDE",
       "description": "A Simple Text Editor written in Rust.",
       "contributors": [
         {
           "github": "playfairs",
-          "role": "Primary Maintainer",
+          "role": "Founder & Primary Maintainer",
+          "founder": true,
           "contributions": ["Core Architecture", "Rust Implementation"]
         },
         {
@@ -23,11 +38,14 @@
     },
     {
       "name": "asteride.dev",
-      "description": "The Official Website for AsterIDE.",
+      "website": "https://asteride.dev",
+      "description": "This Website.",
+      "source": "https://github.com/Aster-IDE/website",
       "contributors": [
         {
           "github": "playfairs",
-          "role": "Primary Maintainer",
+          "role": "Founder & Primary Maintainer",
+          "founder": true,
           "contributions": ["Initial UI Implementation", "Downloads Page", "Roadmap", "Web Redesign"]
         },
         {
@@ -39,6 +57,8 @@
     },
     {
       "name": "Blog",
+      "website": "https://blog.asteride.dev",
+      "source": "https://github.com/Aster-IDE/blog",
       "description": "Blog page for AsterIDE.",
       "contributors": [
         {
@@ -48,8 +68,36 @@
         },
         {
           "github": "playfairs",
-          "role": "Maintainer",
+          "role": "Founder",
+          "founder": true,
           "contributions": ["Articles", "Minor Updates & Fixes"]
+        }
+      ]
+    },
+    {
+      "name": "Docs",
+      "website": "https://docs.asteride.dev",
+      "source": "https://github.com/Aster-IDE/docs",
+      "description": "Documentation site for AsterIDE.",
+      "contributors": [
+        {
+          "github": "playfairs",
+          "role": "Founder",
+          "founder": true,
+          "contributions": ["Documentation"]
+        }
+      ]
+    },
+    {
+      "name": "Plugins",
+      "repo": "https://github.com/Aster-IDE/Plugins",
+      "description": "Official Plugin system for AsterIDE.",
+      "contributors": [
+        {
+          "github": "playfairs",
+          "role": "Founder",
+          "founder": true,
+          "contributions": ["Plugin System"]
         }
       ]
     }
