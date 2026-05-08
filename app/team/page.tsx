@@ -30,7 +30,7 @@ interface GitHubUserData {
 async function fetchGitHubData(username: string): Promise<GitHubUserData | null> {
   try {
     const response = await fetch(`https://api.github.com/users/${username}`, {
-      next: { revalidate: 3600 }
+      next: { revalidate: 1800 }
     });
     
     if (!response.ok) {
@@ -87,7 +87,15 @@ export default async function Team() {
           
           <div className="space-y-6 mb-20">
             {membersWithGitHubData.map((member, index) => (
-              <div key={index} className="group bg-card/50 border border-border rounded-xl p-6 hover:bg-accent/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+              <Link 
+                key={index} 
+                href={`/team/${member.github}`}
+                className={`group block bg-card/50 border p-6 hover:bg-accent/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ${
+                  member.founder 
+                    ? 'border-[#FF82B4]/50 rounded-2xl shadow-[0_0_20px_rgba(255,130,180,0.1)]' 
+                    : 'border-border rounded-xl'
+                }`}
+              >
                 <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
                   <div className="flex items-center gap-4 flex-1">
                     <div className="relative flex-shrink-0">
@@ -106,54 +114,27 @@ export default async function Team() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-lg text-foreground mb-1 group-hover:text-[#FF82B4] transition-colors duration-300">
-                        <a 
-                          href={`https://github.com/${member.github}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:underline"
-                        >
-                          {member.github}
-                        </a>
+                        {member.github}
                         {member.githubData?.name && member.githubData.name !== member.github && (
-                          <a 
-                            href={`https://github.com/${member.github}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-muted-foreground font-normal hover:underline"
-                          > ({member.githubData.name})</a>
+                          <span className="text-muted-foreground font-normal"> ({member.githubData.name})</span>
                         )}
                       </h3>
                       <p className="text-sm text-[#FF82B4] font-medium mb-3">{member.role}</p>
                       
                       {member.githubData && (
                         <div className="flex items-center gap-4 mb-4 text-xs">
-                          <a 
-                            href={`https://github.com/${member.github}?tab=repositories`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
-                          >
+                          <div className="flex items-center gap-1 text-muted-foreground">
                             <span className="font-bold text-primary">{member.githubData.public_repos}</span>
                             <span>repos</span>
-                          </a>
-                          <a 
-                            href={`https://github.com/${member.github}?tab=followers`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
-                          >
+                          </div>
+                          <div className="flex items-center gap-1 text-muted-foreground">
                             <span className="font-bold text-primary">{member.githubData.followers}</span>
                             <span>followers</span>
-                          </a>
-                          <a 
-                            href={`https://github.com/${member.github}?tab=following`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
-                          >
+                          </div>
+                          <div className="flex items-center gap-1 text-muted-foreground">
                             <span className="font-bold text-primary">{member.githubData.following}</span>
                             <span>following</span>
-                          </a>
+                          </div>
                           {member.githubData.location && (
                             <div className="flex items-center gap-1.5 text-muted-foreground">
                               <FaMapMarkerAlt className="text-[#FF82B4] text-xs" />
@@ -182,21 +163,18 @@ export default async function Team() {
                   
                   <div className="flex flex-col gap-2 md:pl-8 md:border-l border-border md:min-w-[140px]">
                     {member.socials.map((social, idx) => (
-                      <a
+                      <div
                         key={idx}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-accent/50 transition-all"
+                        className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground"
                         title={`${social.platform}: ${social.username}`}
                       >
                         <span className="text-[#FF82B4]">{socialIcons[social.platform] || <span className="text-lg font-bold">#</span>}</span>
                         <span className="text-sm font-mono">{social.username}</span>
-                      </a>
+                      </div>
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
