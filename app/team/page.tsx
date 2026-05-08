@@ -162,7 +162,7 @@ export default async function Team() {
                   </div>
                   
                   <div className="flex flex-col gap-2 md:pl-8 md:border-l border-border md:min-w-[140px]">
-                    {member.socials.map((social, idx) => (
+                    {member.socials.slice(0, 3).map((social, idx) => (
                       <div
                         key={idx}
                         className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground"
