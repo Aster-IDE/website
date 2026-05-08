@@ -73,6 +73,12 @@ export default function RootLayout({
                   Download
                 </Link>
                 <Link
+                  href="/team"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-[#FF82B4] transition-colors hover:text-[#FF82B4]/80 font-semibold"
+                >
+                  Team
+                </Link>
+                <Link
                   href="https://github.com/Aster-IDE/AsterIDE"
                   className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
                 >

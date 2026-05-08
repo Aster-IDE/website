@@ -46,16 +46,16 @@ export default function Home() {
             Built for Simplicity and Ease on the eyes.
           </span>
         </p>
-        <div className="mt-10 flex gap-4">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-center">
           <Link
             href="/download"
-            className="btn-ide btn-ide-pill px-6 py-3"
+            className="btn-ide btn-ide-pill px-8 py-3 w-full sm:w-auto min-w-[140px] rounded-lg"
           >
             Download
           </Link>
           <Link
             href="https://github.com/Aster-IDE/AsterIDE"
-            className="rounded-full border border-zinc-300 px-6 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-zinc-300 px-8 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800 w-full sm:w-auto min-w-[140px]"
           >
             GitHub
           </Link>
@@ -63,7 +63,7 @@ export default function Home() {
             href="https://matrix.to/#/#asteride:matrix.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-zinc-300 px-6 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-zinc-300 px-8 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800 w-full sm:w-auto min-w-[140px]"
           >
             Community
           </a>
