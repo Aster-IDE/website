@@ -19,18 +19,39 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AsterIDE",
   description: "A Simple Text Editor written in Rust.",
+  other: {
+    "theme-color": "#c33769",
+  },
 };
 
 const themeInitScript = `
-(() => {
+(function() {
   const key = "theme-mode";
   const root = document.documentElement;
+  
   const saved = localStorage.getItem(key);
   const mode = saved === "light" || saved === "dark" || saved === "system" ? saved : "system";
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const resolved = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
-  root.classList.toggle("dark", resolved === "dark");
+  
+  if (resolved === "dark") {
+    root.classList.add("dark");
+  } else {
+    root.classList.remove("dark");
+  }
   root.dataset.theme = mode;
+  
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  mediaQuery.addEventListener("change", (e) => {
+    const currentMode = localStorage.getItem(key);
+    if (currentMode === "system") {
+      if (e.matches) {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+    }
+  });
 })();
 `;
 
@@ -46,9 +67,31 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const key = "theme-mode";
+                const root = document.documentElement;
+                const saved = localStorage.getItem(key);
+                const mode = saved === "light" || saved === "dark" || saved === "system" ? saved : "system";
+                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                const resolved = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
+                if (resolved === "dark") {
+                  root.classList.add("dark");
+                } else {
+                  root.classList.remove("dark");
+                }
+                root.dataset.theme = mode;
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <header className="border-b border-border px-4 py-5">
           <nav className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 sm:items-center">
             <div className="flex items-center gap-2 flex-1 sm:flex-initial">
