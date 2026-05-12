@@ -1,7 +1,8 @@
 "use client";
 
-import { FaLinux, FaApple, FaWindows, FaCodeBranch, FaFreebsd } from "react-icons/fa";
+import { FaCodeBranch, FaFreebsd } from "react-icons/fa";
 import { SiNixos } from "react-icons/si";
+import { osIcons } from "../icons/icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Copy } from "lucide-react";
@@ -455,7 +456,7 @@ export default function DownloadsClient({
           <DownloadOption
             title="Linux"
             description="FUSE2 (AppImage)"
-            icon={<FaLinux className="text-foreground/70 w-5 h-5" />}
+            icon={osIcons.linux}
             type="file"
             fileType="AppImage"
             downloadUrl={linuxUrl ?? undefined}
@@ -465,7 +466,7 @@ export default function DownloadsClient({
           <DownloadOption
             title="macOS"
             description="Universal DMG"
-            icon={<FaApple className="text-foreground/70 w-5 h-5" />}
+            icon={osIcons.apple}
             type="file"
             fileType="DMG"
             downloadUrl={macosUrl ?? undefined}
@@ -476,7 +477,7 @@ export default function DownloadsClient({
           <DownloadOption
             title="Windows"
             description="Windows executable"
-            icon={<FaWindows className="text-foreground/70 w-5 h-5" />}
+            icon={osIcons.windows}
             type="file"
             fileType="EXE"
             downloadUrl={windowsUrl ?? undefined}

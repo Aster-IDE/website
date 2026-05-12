@@ -2,8 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
-import { FaGithub, FaStar, FaTiktok, FaGitlab, FaMapMarkerAlt, FaCalendar, FaBuilding } from "react-icons/fa";
-import { SiMatrix } from "react-icons/si";
+import { FaStar, FaMapMarkerAlt, FaCalendar, FaBuilding } from "react-icons/fa";
+import { socialIcons, miscIcons } from "../../icons/icons";
 import Image from "next/image";
 import teamData from "../team.json";
 
@@ -13,12 +13,6 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const socialIcons: Record<string, React.ReactNode> = {
-  github: <FaGithub className="text-lg" />,
-  matrix: <SiMatrix className="text-lg" />,
-  tiktok: <FaTiktok className="text-lg" />,
-  gitlab: <FaGitlab className="text-lg" />
-};
 
 interface GitHubUserData {
   login: string;
@@ -291,17 +285,20 @@ export default async function TeamMemberPage({ params }: PageProps) {
                 style={{ fontWeight: 900 }}>
               Connect
             </h2>
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {member.socials.map((social, idx) => (
                 <a
                   key={idx}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg bg-accent/50 text-muted-foreground hover:text-primary hover:bg-accent transition-all"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg bg-accent/50 text-muted-foreground hover:text-primary hover:bg-accent transition-all border border-transparent hover:border-border"
                 >
-                  <span className="text-[#FF82B4]">{socialIcons[social.platform] || <span className="text-lg font-bold">#</span>}</span>
-                  <span className="font-mono">{social.username}</span>
+                  <span className="text-[#FF82B4] flex-shrink-0">{socialIcons[social.platform.toLowerCase()] || miscIcons[social.platform.toLowerCase()] || <span className="text-lg font-bold">#</span>}</span>
+                  <div className="flex-1 min-w-0">
+                    <span className="font-mono text-sm block truncate">{social.username}</span>
+                    <span className="text-xs text-muted-foreground/70">{social.platform}</span>
+                  </div>
                 </a>
               ))}
             </div>

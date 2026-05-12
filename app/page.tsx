@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
 import PronunciationButton from "@/components/PronunciationButton";
-import { FaBolt, FaPalette, FaDesktop, FaKeyboard } from "react-icons/fa";
+import { miscIcons } from "./icons/icons";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -83,28 +83,28 @@ export default function Home() {
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
-              <div className="mb-3 text-2xl text-[#FF82B4]"><FaBolt /></div>
+              <div className="mb-3 text-2xl text-[#FF82B4]">{miscIcons.bolt}</div>
               <h3 className="mb-2 font-semibold">Responsive</h3>
               <p className="text-base text-muted-foreground">
                 Open files in milliseconds. Edit large files without lag. Your time is valuable.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
-              <div className="mb-3 text-2xl text-[#FF82B4]"><FaPalette /></div>
+              <div className="mb-3 text-2xl text-[#FF82B4]">{miscIcons.palette}</div>
               <h3 className="mb-2 font-semibold">Eye Candy</h3>
               <p className="text-base text-muted-foreground">
                 Cherry Blossom and Rosé Pine themes designed for long coding sessions. No eye strain, just focus.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
-              <div className="mb-3 text-2xl text-[#FF82B4]"><FaDesktop /></div>
+              <div className="mb-3 text-2xl text-[#FF82B4]">{miscIcons.desktop}</div>
               <h3 className="mb-2 font-semibold">Cross Platform</h3>
               <p className="text-base text-muted-foreground">
                 AsterIDE supports macOS, Windows, FreeBSD, and Nix. Soon coming to Linux.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
-              <div className="mb-3 text-2xl text-[#FF82B4]"><FaKeyboard /></div>
+              <div className="mb-3 text-2xl text-[#FF82B4]">{miscIcons.keyboard}</div>
               <h3 className="mb-2 font-semibold">Optimized</h3>
               <p className="text-base text-muted-foreground">
                 Because AsterIDE is made in Rust, it makes it easy to opitimize memory usage.

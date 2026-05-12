@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
-import { FaGithub, FaCode, FaStar, FaTiktok, FaGitlab, FaMapMarkerAlt } from "react-icons/fa";
-import { SiMatrix } from "react-icons/si";
+import { FaCode, FaStar, FaMapMarkerAlt, FaGithub } from "react-icons/fa";
+import { socialIcons, miscIcons } from "../icons/icons";
 import Image from "next/image";
 import teamData from "./team.json";
 
@@ -12,12 +12,6 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const socialIcons: Record<string, React.ReactNode> = {
-  github: <FaGithub className="text-lg" />,
-  matrix: <SiMatrix className="text-lg" />,
-  tiktok: <FaTiktok className="text-lg" />,
-  gitlab: <FaGitlab className="text-lg" />
-};
 
 interface GitHubUserData {
   name: string | null;
@@ -168,7 +162,7 @@ export default async function Team() {
                         className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground"
                         title={`${social.platform}: ${social.username}`}
                       >
-                        <span className="text-[#FF82B4]">{socialIcons[social.platform] || <span className="text-lg font-bold">#</span>}</span>
+                        <span className="text-[#FF82B4]">{socialIcons[social.platform.toLowerCase()] || miscIcons[social.platform.toLowerCase()] || <span className="text-lg font-bold">#</span>}</span>
                         <span className="text-sm font-mono">{social.username}</span>
                       </div>
                     ))}

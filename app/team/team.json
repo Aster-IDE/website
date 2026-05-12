@@ -8,24 +8,29 @@
       "contributions": ["Core Architecture", "Rust Implementation", "UI/UX Design", "Web Development"],
       "socials": [
         {
-          "platform": "github",
+          "platform": "GitHub",
           "url": "https://github.com/playfairs",
           "username": "playfairs"
         },
         {
-          "platform": "gitlab",
+          "platform": "GitLab",
           "url": "https://gitlab.com/playfairs",
           "username": "playfairs"
         },
         {
-          "platform": "tiktok",
+          "platform": "TikTok",
           "url": "https://tiktok.com/@rosepinetheme",
           "username": "@rosepinetheme"
         },
         {
-          "platform": "matrix",
+          "platform": "Matrix",
           "url": "https://matrix.to/#/@playfairs:matrix.org",
           "username": "@playfairs"
+        },
+        {
+          "platform": "playfairs.cc",
+          "url": "https://playfairs.cc",
+          "username": "playfairs.cc"
         }
       ]
     },
@@ -37,13 +42,18 @@
       "contributions": ["GitHub Workflows", "Nix Flake", "CI/CD", "Build Systems"],
       "socials": [
         {
-          "platform": "github",
+          "platform": "GitHub",
           "url": "https://github.com/invra",
           "username": "invra"
         },
         {
-          "platform": "gitlab",
+          "platform": "GitLab",
           "url": "https://gitlab.com/invra",
+          "username": "invra"
+        },
+        {
+          "platform": "Mercurial",
+          "url": "https://hg.sr.ht/~invra",
           "username": "invra"
         }
       ]
@@ -56,7 +66,7 @@
       "contributions": ["Windows Testing", "Quality Assurance", "UI/UX Design", "Web Development", "Blog Creation"],
       "socials": [
         {
-          "platform": "github",
+          "platform": "GitHub",
           "url": "https://github.com/tazldied",
           "username": "tazldied"
         }
