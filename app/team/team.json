@@ -20,17 +20,27 @@
         {
           "platform": "TikTok",
           "url": "https://tiktok.com/@rosepinetheme",
-          "username": "@rosepinetheme"
+          "username": "rosepinetheme"
         },
         {
           "platform": "Matrix",
           "url": "https://matrix.to/#/@playfairs:matrix.org",
-          "username": "@playfairs"
+          "username": "playfairs"
         },
         {
           "platform": "playfairs.cc",
           "url": "https://playfairs.cc",
           "username": "playfairs.cc"
+        },
+        {
+          "platform": "Discord",
+          "url": "https://discord.com/users/1426711359059394662",
+          "username": "playfairs"
+        },
+        {
+          "platform": "Telegram",
+          "url": "https://t.me/sobbinf",
+          "username": "sobbinf"
         }
       ]
     },

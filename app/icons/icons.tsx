@@ -18,7 +18,9 @@ import {
     FaBolt,
     FaPalette,
     FaDesktop,
-    FaKeyboard
+    FaKeyboard,
+    FaDiscord,
+    FaTelegram
 } from "react-icons/fa";
 
 import {
@@ -32,7 +34,9 @@ export const socialIcons: Record<string, React.ReactNode> = {
   tiktok: <FaTiktok className="text-lg" />,
   gitlab: <FaGitlab className="text-lg" />,
   website: <FaGlobe className="text-lg" />,
-  mercurial: <SiMercurial className="text-lg" />
+  mercurial: <SiMercurial className="text-lg" />,
+  discord: <FaDiscord className="text-lg" />,
+  telegram: <FaTelegram className="text-lg" />
 };
 
 export const miscIcons: Record<string, React.ReactNode> = {
