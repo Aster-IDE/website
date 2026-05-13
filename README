@@ -1,0 +1,51 @@
+                                AsterIDE.dev
+                     Homepage for the AsterIDE Project
+
+   asteride.dev
+
+      This repository serves as the official homepage and entry point for
+      all things related to AsterIDE — a simple, fast, and modern text
+      editor written in Rust.
+
+      The site acts as the main website for the AsterIDE ecosystem,
+      providing documentation, updates, and general project information.
+
+   Tech Stack.
+
+      This website is built using Next.js (https://nextjs.org), with
+      TypeScript and React for application structure and UI components,
+      and Tailwind CSS for styling and layout.
+
+   Contributing.
+
+      Contributions are welcome.
+
+      You may submit improvements or fixes via pull requests. All changes
+      should be clear, focused, and consistent with the existing codebase
+      style and structure.
+
+   Security.
+
+      If you discover a vulnerability or security issue affecting this
+      website or any related AsterIDE service, you should not disclose it
+      publicly.
+
+      Instead, you may:
+
+      (a) Open a non-public or private security report if available; or
+      (b) Submit a pull request that directly addresses the issue.
+
+      Reports should include, where possible:
+
+      (a) A description of the issue;
+      (b) Steps to reproduce;
+      (c) Affected pages or components;
+      (d) Any relevant technical details or proof of concept;
+
+      All security reports will be reviewed and addressed as promptly as
+      possible.
+
+   License.
+
+      Unless otherwise stated, this project is licensed under the terms of
+      the repository license.
