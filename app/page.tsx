@@ -10,23 +10,44 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-export default function Home() {
+async function getLatestRelease() {
+  try {
+    const response = await fetch("https://api.github.com/repos/Aster-IDE/AsterIDE/releases/latest", {
+      next: { revalidate: 300 },
+    });
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data.tag_name || data.name;
+  } catch {
+    return null;
+  }
+}
+
+export default async function Home() {
+  const latestVersion = await getLatestRelease();
   return (
     <div className="flex flex-col flex-1 relative">
-      <CherryBlossom count={25} />
+      <CherryBlossom count={30} />
       <section className="flex flex-col items-center justify-center px-4 py-24 text-center relative z-10">
-        <div className="flex items-center gap-3">
+        <div className="relative flex items-center justify-center">
           <h1
             className={`${instrumentSerif.className} text-7xl font-[900] tracking-tight text-primary italic sm:text-8xl`}
             style={{ fontWeight: 900 }}
           >
             AsterIDE
           </h1>
-          <PronunciationButton />
+          {latestVersion && (
+            <span className="absolute top-full font-mono text-primary font-[900]">
+              {latestVersion}
+            </span>
+          )}
+          <div className="absolute -right-12">
+            <PronunciationButton />
+          </div>
         </div>
         <p
-          className={`${instrumentSerif.className} mt-6 max-w-4xl text-2xl leading-tight font-[800] text-muted-foreground sm:text-3xl`}
-          style={{ fontWeight: 800 }}
+          className={`${instrumentSerif.className} mt-8 max-w-4xl text-2xl leading-tight font-[500] text-muted-foreground sm:text-3xl`}
+          style={{ fontWeight: 100 }}
         >
           <span
             className={`${instrumentSerif.className} text-primary italic sm:whitespace-nowrap`}
@@ -49,13 +70,13 @@ export default function Home() {
         <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-center">
           <Link
             href="/download"
-            className="btn-ide btn-ide-pill px-8 py-3 w-full sm:w-auto min-w-[140px] rounded-lg"
+            className="btn-ide btn-ide-pill px-6 py-3 w-full sm:w-auto min-w-[100px] rounded-lg"
           >
             Download
           </Link>
           <Link
             href="https://github.com/Aster-IDE/AsterIDE"
-            className="rounded-lg border border-zinc-300 px-8 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800 w-full sm:w-auto min-w-[140px]"
+            className="rounded-lg border border-zinc-300 px-8 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800 w-full sm:w-auto min-w-[100px]"
           >
             GitHub
           </Link>
@@ -63,7 +84,7 @@ export default function Home() {
             href="https://matrix.to/#/#asteride:matrix.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-zinc-300 px-8 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800 w-full sm:w-auto min-w-[140px]"
+            className="rounded-lg border border-zinc-300 px-8 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800 w-full sm:w-auto min-w-[100px]"
           >
             Community
           </a>

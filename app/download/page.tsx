@@ -8,7 +8,8 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "AsterIDE - Downloads",
+  title: "AsterIDE::Downloads",
+  description: "Download AsterIDE for Windows, macOS, and FreeBSD"
 };
 
 type GitHubReleaseAsset = {
