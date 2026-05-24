@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import DownloadsClient from "./DownloadsClient";
 import { Instrument_Serif } from "next/font/google";
 
@@ -7,9 +8,12 @@ const instrumentSerif = Instrument_Serif({
   style: "normal",
 });
 
-export const metadata = {
-  title: "AsterIDE::Downloads",
-  description: "Download AsterIDE for Windows, macOS, and FreeBSD"
+export const metadata: Metadata = {
+  title: "AsterIDE::Download",
+  description: "Download AsterIDE, Currently supported for Windows, macOS, FreeBSD, and NixOS.",
+  other: {
+    "theme-color": "#c33769",
+  },
 };
 
 type GitHubReleaseAsset = {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
 
@@ -6,6 +7,14 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
 });
+
+export const metadata: Metadata = {
+  title: "AsterIDE::FAQ",
+  description: "Got questions about AsterIDE? We've got answers.",
+  other: {
+    "theme-color": "#c33769",
+  },
+};
 
 const faqs = [
   {

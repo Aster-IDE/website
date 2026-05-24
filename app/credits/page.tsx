@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import { FaGithub } from "react-icons/fa";
@@ -11,6 +10,14 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
 });
+
+export const metadata: Metadata = {
+  title: "AsterIDE::Credits",
+ description: "Credits to the Developers of AsterIDE and it's Products.",
+  other: {
+    "theme-color": "#c33769",
+  },
+};
 
 interface Contributor {
   github: string;

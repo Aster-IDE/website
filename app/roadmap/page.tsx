@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -8,6 +9,14 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: "normal",
 });
+
+export const metadata: Metadata = {
+  title: "AsterIDE::Roadmap",
+  description: "Our plans and goals for AsterIDE development. This document is frequently synced from our GitHub repository.",
+  other: {
+    "theme-color": "#c33769",
+  },
+};
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

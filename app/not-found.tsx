@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
@@ -8,6 +9,14 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
 });
+
+export const metadata: Metadata = {
+  title: "AsterIDE::404",
+  description: "Sorry, but this page doesn't exist.",
+  other: {
+    "theme-color": "#c33769",
+  },
+};
 
 export default function NotFound() {
   return (

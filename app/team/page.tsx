@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
@@ -12,6 +13,13 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+export const metadata: Metadata = {
+  title: "AsterIDE::Team",
+  description: "The main developers of AsterIDE.",
+  other: {
+    "theme-color": "#c33769",
+  },
+};
 
 interface GitHubUserData {
   name: string | null;

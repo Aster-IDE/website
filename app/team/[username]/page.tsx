@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Instrument_Serif } from "next/font/google";
@@ -13,6 +14,23 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+export async function generateMetadata(
+  { params }: PageProps
+): Promise<Metadata> {
+  const { username } = await params;
+
+  const member = teamData.members.find(
+    m => m.github.toLowerCase() === username.toLowerCase()
+  );
+
+  return {
+    title: `AsterIDE::Team::${member?.github || username}`,
+    description: member?.bio || "An AsterIDE team member.",
+    other: {
+      "theme-color": "#c33769",
+    },
+  };
+}
 
 interface GitHubUserData {
   login: string;
