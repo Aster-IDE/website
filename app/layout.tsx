@@ -20,13 +20,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const isStaging = process.env.NEXT_PUBLIC_IS_STAGING === "true";
+const isLocal = process.env.NODE_ENV === "development";
+
+function getEnvironmentLabel(): string {
+  if (isStaging) return "(Staging)";
+  if (isLocal) return "(Local)";
+  return "";
+}
+
+const envLabel = getEnvironmentLabel();
+
 export const metadata: Metadata = {
-  title: "AsterIDE",
+  title: envLabel ? `AsterIDE ${envLabel}` : "AsterIDE",
   description: "A Simple Text Editor written in Rust.",
   other: {
     "theme-color": "#c33769",
   },
 };
+
+export function getPageTitle(baseTitle: string): string {
+  return envLabel ? `${baseTitle} ${envLabel}` : baseTitle;
+}
 
 const themeInitScript = `
 (function() {
