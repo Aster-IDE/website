@@ -32,14 +32,14 @@ export default function HeaderBreadcrumb() {
   }
 
   return (
-    <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground">
-      <Link href="/" className="transition-colors hover:text-primary">
+    <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground min-w-0">
+      <Link href="/" className="transition-colors hover:text-primary flex-shrink-0">
         AsterIDE
       </Link>
       {breadcrumbs.map((item) => (
-        <span key={item.href}>
-          <span className="text-border"> / </span>
-          <Link href={item.href} className="transition-colors hover:text-primary">
+        <span key={item.href} className="flex items-center gap-2 min-w-0">
+          <span className="text-border flex-shrink-0"> / </span>
+          <Link href={item.href} className="transition-colors hover:text-primary truncate">
             {item.label}
           </Link>
         </span>
