@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
 import PronunciationButton from "@/components/PronunciationButton";
-import { miscIcons } from "./icons/icons";
+import { miscIcons, socialIcons } from "./icons/icons";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -80,14 +80,31 @@ export default async function Home() {
           >
             GitHub
           </Link>
-          <a
-            href="https://matrix.to/#/#asteride:matrix.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-lg border border-zinc-300 px-8 py-3 font-medium transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800 w-full sm:w-auto min-w-[100px]"
-          >
-            Community
-          </a>
+          <div className="rounded-lg border border-zinc-300 overflow-hidden w-full sm:w-auto min-w-[80px] dark:border-zinc-700">
+            <div className="flex">
+              <a
+                href="https://discord.gg/wQHPEAgfTE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex-1 flex items-center justify-center px-4 py-3 font-medium transition-all duration-300 ease hover:flex-[2] hover:min-w-[120px]"
+              >
+                {socialIcons.discord}
+                <span className="hidden group-hover:inline text-xs ml-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease">Discord</span>
+              </a>
+              <div className="flex items-center px-2 py-3 text-muted-foreground/50 shrink-0">
+                /
+              </div>
+              <a
+                href="https://matrix.to/#/#asteride:matrix.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex-1 flex items-center justify-center px-4 py-3 font-medium transition-all duration-300 ease hover:flex-[2] hover:min-w-[120px]"
+              >
+                {socialIcons.matrix}
+                <span className="hidden group-hover:inline text-xs ml-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease">Matrix</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

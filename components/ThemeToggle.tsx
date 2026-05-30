@@ -1,6 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { useRef } from "react";
 
 type ThemeMode = "light" | "dark";
 
@@ -13,6 +14,8 @@ function applyTheme(mode: ThemeMode) {
 }
 
 export default function ThemeToggle() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const toggleTheme = () => {
     const root = document.documentElement;
     const currentlyDark = root.classList.contains("dark");
@@ -24,14 +27,17 @@ export default function ThemeToggle() {
 
   return (
     <button
+      ref={buttonRef}
       type="button"
       onClick={toggleTheme}
-      className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-border bg-card text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+      className="inline-flex h-6 w-11 cursor-pointer items-center justify-center rounded-sm border border-border bg-card text-muted-foreground transition-colors hover:border-primary hover:text-primary"
       aria-label="Toggle theme"
       title="Toggle light/dark theme"
+      suppressHydrationWarning
+      data-theme-toggle="true"
     >
-      <Moon className="h-4 w-4 dark:hidden" />
-      <Sun className="hidden h-4 w-4 dark:block" />
+      <Moon className="h-4 w-4 dark:hidden" suppressHydrationWarning />
+      <Sun className="hidden h-4 w-4 dark:block" suppressHydrationWarning />
     </button>
   );
 }

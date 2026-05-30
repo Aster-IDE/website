@@ -4,6 +4,10 @@ import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import HeaderBreadcrumb from "@/components/HeaderBreadcrumb";
 import MobileMenu from "@/components/MobileMenu";
+import DarkReaderDetector from "@/components/DarkReaderDetector";
+import CommandPalette from "@/components/CommandPalette";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import SearchButton from "@/components/SearchButton";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -90,72 +94,81 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col pt-20 pb-20">
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <header className="border-b border-border px-4 py-5">
-          <nav className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 sm:items-center">
-            <div className="flex items-center gap-2 flex-1 sm:flex-initial">
+        <ReadingProgressBar />
+        <DarkReaderDetector />
+        <CommandPalette />
+        <header className="fixed left-1/2 -translate-x-1/2 top-4 z-50 border border-border px-10 py-3 rounded-lg bg-background/80 backdrop-blur-sm">
+          <nav className="flex items-center justify-between gap-17 sm:items-center">
+            <div className="flex items-center gap-3 flex-1 sm:flex-initial">
               <span
                 className="inline-block h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
                 aria-hidden
               />
               <HeaderBreadcrumb />
             </div>
-            <div className="ml-auto flex items-center gap-4">
-              <div className="hidden md:flex flex-wrap items-center justify-end gap-x-3 gap-y-2">
-                <Link
-                  href="/"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/download"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Download
-                </Link>
-                <Link
-                  href="/team"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-[#FF82B4] transition-colors hover:text-[#FF82B4]/80 font-semibold"
-                >
-                  Team
-                </Link>
-                <Link
-                  href="https://github.com/Aster-IDE/AsterIDE"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  GitHub
-                </Link>
-                <Link
-                  href="https://docs.asteride.dev"
-                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Docs
-                </Link>
-                <ThemeToggle />
-              </div>
-              
-              <div className="flex items-center gap-4 md:hidden">
-                <ThemeToggle />
-                <MobileMenu />
-              </div>
+            <div className="hidden md:flex items-center justify-end gap-x-4">
+              <Link
+                href="/"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Home
+              </Link>
+              <span className="text-muted-foreground/30">|</span>
+              <Link
+                href="/download"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Download
+              </Link>
+              <span className="text-muted-foreground/30">|</span>
+              <Link
+                href="/team"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-[#FF82B4] transition-colors hover:text-[#FF82B4]/80 font-semibold"
+              >
+                Team
+              </Link>
+              <span className="text-muted-foreground/30">|</span>
+              <Link
+                href="https://github.com/Aster-IDE/AsterIDE"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                GitHub
+              </Link>
+              <span className="text-muted-foreground/30">|</span>
+              <Link
+                href="https://docs.asteride.dev"
+                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+              >
+                Docs
+              </Link>
+              <span className="text-muted-foreground/30">|</span>
+              <SearchButton />
+              <span className="text-muted-foreground/30">|</span>
+              <ThemeToggle />
+            </div>
+            
+            <div className="flex items-center gap-4 md:hidden">
+              <SearchButton />
+              <ThemeToggle />
+              <MobileMenu />
             </div>
           </nav>
         </header>
         {children}
-        <footer className="mt-auto border-t border-border px-4 py-5">
-          <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-3 text-sm sm:grid-cols-[1fr_auto_1fr]">
-            <div className="flex items-center justify-center gap-2 sm:justify-self-start">
+        <footer className="fixed left-1/2 -translate-x-1/2 bottom-4 z-50 border border-border px-10 py-3 rounded-lg bg-background/80 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-6 text-sm sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
               <span
                 className="inline-block h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--primary)]"
                 aria-hidden
               />
-              <span className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground">
+              <span className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground whitespace-nowrap">
                 Made with 💝 and Rust
               </span>
             </div>
-            <div className="text-center text-xs text-muted-foreground sm:justify-self-center sm:whitespace-nowrap">
+            <div className="text-center text-xs text-muted-foreground whitespace-nowrap">
               &copy; 2026 AsterIDE. This software follows all principles of the{" "}
               <a
                 href="https://www.fsf.org/"
@@ -167,31 +180,28 @@ export default function RootLayout({
               </a>
               .
             </div>
-            <div className="flex text-xs flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:justify-self-end">
+            <div className="flex items-center justify-center gap-x-4">
               <Link
                 href="https://github.com/Aster-IDE/AsterIDE/releases"
                 className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 Releases
               </Link>
+              <span className="text-muted-foreground/30">|</span>
               <Link
                 href="/credits"
                 className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 Credits
               </Link>
-              <Link
-                href="/team"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Team
-              </Link>
+              <span className="text-muted-foreground/30">|</span>
               <Link
                 href="/faq"
                 className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
               >
                 FAQ
               </Link>
+              <span className="text-muted-foreground/30">|</span>
               <Link
                 href="https://blog.asteride.dev"
                 className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
