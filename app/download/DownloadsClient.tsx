@@ -3,7 +3,6 @@
 import { FaCodeBranch, FaFreebsd } from "react-icons/fa";
 import { SiNixos } from "react-icons/si";
 import { osIcons } from "../icons/icons";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Copy } from "lucide-react";
 import Image from "next/image";
@@ -40,9 +39,6 @@ export default function DownloadsClient({
 }: DownloadsClientProps) {
   const [isCopied, setIsCopied] = useState(false);
   const [xattrCopied, setXattrCopied] = useState(false);
-  const [sourceCodeOpen, setSourceCodeOpen] = useState(false);
-  const [installersOpen, setInstallersOpen] = useState(false);
-  const [installScriptsOpen, setInstallScriptsOpen] = useState(false);
   const [selectedNixOption, setSelectedNixOption] = useState<NixOption>("flake");
   const [copiedSection, setCopiedSection] = useState<string | null>(null);
   const copyTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -174,16 +170,30 @@ export default function DownloadsClient({
 
   return (
     <>
-      <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
-      <div className="space-y-4">
-        <h2
-          className={`${instrumentSerif.className} mb-1 text-sm font-[900] uppercase tracking-wider text-foreground/95`}
-          style={{ fontWeight: 900 }}
-        >
-          Download for
-        </h2>
-        <div className="space-y-3">
-              <DownloadOption
+      <section className="mt-8 space-y-8">
+        <div className="flex flex-col gap-4 border-b border-border/70 pb-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2
+              className={`${instrumentSerif.className} text-sm font-[900] uppercase tracking-wider text-foreground/95`}
+              style={{ fontWeight: 900 }}
+            >
+              Stable downloads
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Latest stable build: <span className="font-medium text-foreground">{releaseLabel}</span>
+            </p>
+          </div>
+          <a
+            className="inline-flex w-fit items-center justify-center rounded-md border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-accent/30"
+            href="https://github.com/Aster-IDE/AsterIDE/releases/latest"
+          >
+            View release
+          </a>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="sm:col-span-2 lg:col-span-3">
+            <DownloadOption
               title="Nix"
               description="A Nix flake output and overlay"
               instructions={(
@@ -453,7 +463,8 @@ export default function DownloadsClient({
               icon={<SiNixos className="text-foreground/70 w-5 h-5" />}
               type="commands"
               disabled={false}
-              />
+            />
+          </div>
 
           <DownloadOption
             title="Linux"
@@ -497,21 +508,21 @@ export default function DownloadsClient({
             disabled={!freebsdUrl}
             disabledLabel="Building"
           />
-
-          <p className="px-1 text-xs text-muted-foreground">
-            <span className="text-foreground/90">{releaseLabel}</span>
-          </p>
         </div>
-      </div>
 
-      <div className="space-y-4">
-        <h2
-          className={`${instrumentSerif.className} mb-1 text-sm font-[900] uppercase tracking-wider text-foreground/95`}
-          style={{ fontWeight: 900 }}
-        >
-          Additional info
-        </h2>
-        <div className="space-y-3">
+        <div className="space-y-4">
+          <div>
+            <h2
+              className={`${instrumentSerif.className} text-sm font-[900] uppercase tracking-wider text-foreground/95`}
+              style={{ fontWeight: 900 }}
+            >
+              Other downloads
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Development builds and source archives.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
           <DownloadOption
             title="Development Build"
             description={
@@ -533,101 +544,16 @@ export default function DownloadsClient({
               </div>
             )}
           />
-          <div className="border border-border bg-card rounded-md overflow-hidden">
-            <button
-              className="w-full cursor-pointer px-4 py-3 text-center text-base font-semibold transition-colors hover:bg-accent/30"
-              onClick={() => setSourceCodeOpen(!sourceCodeOpen)}
-            >
-              Source Code
-            </button>
-
-            <AnimatePresence initial={false}>
-              {sourceCodeOpen && (
-                <motion.div
-                  key="source"
-                  initial={{ height: 0, opacity: 0, y: -10 }}
-                  animate={{ height: "auto", opacity: 1, y: 0 }}
-                  exit={{ height: 0, opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-col p-3 pb-2 pt-0">
-                    <p className="text-sm text-muted-foreground">
-                      The source code for {releaseLabel} can be found on GitHub.
-                    </p>
-                    <a
-                      className="btn-ide mt-4 px-5 py-2 text-center text-sm"
-                      href={sourceTarballUrl}
-                    >
-                      Download .tar.gz
-                    </a>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          <div className="border border-border bg-card rounded-md overflow-hidden">
-            <button
-              className="w-full cursor-pointer px-4 py-3 text-center text-base font-semibold transition-colors hover:bg-accent/30"
-              onClick={() => setInstallersOpen(!installersOpen)}
-            >
-              Installers
-            </button>
-
-            <AnimatePresence initial={false}>
-              {installersOpen && (
-                <motion.div
-                  key="installers"
-                  initial={{ height: 0, opacity: 0, y: -10 }}
-                  animate={{ height: "auto", opacity: 1, y: 0 }}
-                  exit={{ height: 0, opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-col p-3 pb-2 pt-0">
-                    <p className="text-sm text-muted-foreground">
-                      System installers for easy setup.
-                    </p>
-                    <p className="text-sm text-primary font-medium mt-2">
-                      Coming Soon
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          <div className="border border-border bg-card rounded-md overflow-hidden">
-            <button
-              className="w-full cursor-pointer px-4 py-3 text-center text-base font-semibold transition-colors hover:bg-accent/30"
-              onClick={() => setInstallScriptsOpen(!installScriptsOpen)}
-            >
-              Install Scripts
-            </button>
-
-            <AnimatePresence initial={false}>
-              {installScriptsOpen && (
-                <motion.div
-                  key="installScripts"
-                  initial={{ height: 0, opacity: 0, y: -10 }}
-                  animate={{ height: "auto", opacity: 1, y: 0 }}
-                  exit={{ height: 0, opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-col p-3 pb-2 pt-0">
-                    <p className="text-sm text-muted-foreground">
-                      Automated installation scripts for various platforms.
-                    </p>
-                    <p className="text-sm text-primary font-medium mt-2">
-                      Coming Soon
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <DownloadOption
+            title="Source Code"
+            description={`${releaseLabel} tarball`}
+            icon={<FaCodeBranch className="text-foreground/70 w-5 h-5" />}
+            type="file"
+            fileType="tar.gz"
+            downloadUrl={sourceTarballUrl}
+          />
           </div>
         </div>
-      </div>
     </section>
 
     <section className="mt-12 border-t border-border pt-8">

@@ -111,16 +111,16 @@ export default async function DownloadPage() {
   );
 
   return (
-    <div className="flex flex-col flex-1 px-4 py-12">
-      <div className="mx-auto w-full max-w-5xl">
+    <div className="flex flex-col flex-1 px-4 py-10 sm:px-6">
+      <div className="mx-auto w-full max-w-6xl">
         <h1
-          className={`${instrumentSerif.className} text-3xl font-[900] tracking-tight text-primary italic`}
+          className={`${instrumentSerif.className} text-4xl font-[900] tracking-tight text-primary italic`}
           style={{ fontWeight: 900, fontStyle: "italic" }}
         >
           Downloads
         </h1>
-        <p className="mt-2 text-sm text-zinc-400">
-          Choose your platform below to get the latest builds or installers.
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          Pick a stable build for your system, or grab the latest development build and source archive.
         </p>
         <DownloadsClient
           latestRelease={latestRelease}

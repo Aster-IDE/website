@@ -51,7 +51,8 @@
     justify-content: center;
     border-radius: 0.375rem;
     font-weight: 600;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 0.06);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     background-color: var(--button-primary);
     color: var(--button-primary-text);
     border: 1px solid var(--button-primary-border);
@@ -59,6 +60,8 @@
 
   .btn-ide:hover {
     background-color: var(--button-primary-hover);
+    box-shadow: 0 6px 16px rgb(195 55 105 / 0.18);
+    transform: translateY(-1px);
   }
 
   .btn-ide-pill {
