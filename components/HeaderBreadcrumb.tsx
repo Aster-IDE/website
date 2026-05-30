@@ -7,6 +7,7 @@ export default function HeaderBreadcrumb() {
   const pathname = usePathname();
   
   const teamMemberMatch = pathname.match(/^\/team\/([^\/]+)$/);
+  const downloadPlatformMatch = pathname.match(/^\/download\/([^\/]+)$/);
   
   // this probably isnt the best way to do this but whatever
   // i will kill myself if someone decides to fix this code
@@ -26,6 +27,12 @@ export default function HeaderBreadcrumb() {
     breadcrumbs = [
       { href: "/team", label: "Team" },
       { href: pathname, label: username }
+    ];
+  } else if (downloadPlatformMatch) {
+    const platform = downloadPlatformMatch[1];
+    breadcrumbs = [
+      { href: "/download", label: "Download" },
+      { href: pathname, label: platform }
     ];
   } else if (crumb) {
     breadcrumbs = [crumb];

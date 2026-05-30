@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import DownloadsClient from "./DownloadsClient";
+import DownloadHome from "./DownloadHome";
 import { Instrument_Serif } from "next/font/google";
+import { getLatestStableRelease } from "@/lib/downloads";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -16,116 +17,26 @@ export const metadata: Metadata = {
   },
 };
 
-type GitHubReleaseAsset = {
-  name: string;
-  browser_download_url: string;
-};
-
-type GitHubRelease = {
-  tag_name: string;
-  draft: boolean;
-  prerelease: boolean;
-  tarball_url: string;
-  assets: GitHubReleaseAsset[];
-};
-
-type DownloadReleaseInfo = {
-  version: string;
-  macosUrl: string | null;
-  windowsUrl: string | null;
-  linuxUrl: string | null;
-  freebsdUrl: string | null;
-  sourceTarballUrl: string | null;
-};
-
-function pickAssetUrl(assets: GitHubReleaseAsset[], patterns: RegExp[]) {
-  const asset = assets.find((candidate) =>
-    patterns.some((pattern) => pattern.test(candidate.name))
-  );
-
-  return asset?.browser_download_url ?? null;
-}
-
-function mapRelease(release: GitHubRelease): DownloadReleaseInfo {
-  return {
-    version: release.tag_name,
-    macosUrl: pickAssetUrl(release.assets, [/\.pkg$/i]),
-    windowsUrl: pickAssetUrl(release.assets, [/\.exe$/i]),
-    linuxUrl: pickAssetUrl(release.assets, [/\.AppImage$/i]),
-    freebsdUrl: pickAssetUrl(release.assets, [/asteride-freebsd/i]),
-    sourceTarballUrl: release.tarball_url || null,
-  };
-}
-
-async function getLatestStableRelease(): Promise<DownloadReleaseInfo | null> {
-  try {
-    const response = await fetch("https://api.github.com/repos/Aster-IDE/AsterIDE/releases/latest", {
-      headers: {
-        Accept: "application/vnd.github+json",
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      return null;
-    }
-
-    const latestStableRelease = (await response.json()) as GitHubRelease;
-    return mapRelease(latestStableRelease);
-  } catch {
-    return null;
-  }
-}
-
-async function getMostRecentRelease(): Promise<DownloadReleaseInfo | null> {
-  try {
-    const response = await fetch("https://api.github.com/repos/Aster-IDE/AsterIDE/releases?per_page=10", {
-      headers: {
-        Accept: "application/vnd.github+json",
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      return null;
-    }
-
-    const releases = (await response.json()) as GitHubRelease[];
-    const mostRecentRelease = releases.find((release) => !release.draft);
-
-    if (!mostRecentRelease) {
-      return null;
-    }
-
-    return mapRelease(mostRecentRelease);
-  } catch {
-    return null;
-  }
-}
-
 export default async function DownloadPage() {
   const latestRelease = await getLatestStableRelease();
-  const latestDevRelease = await getMostRecentRelease();
-  const isDevSynced = Boolean(
-    latestRelease && latestDevRelease && latestRelease.version === latestDevRelease.version
-  );
+  const releaseLabel = latestRelease?.version ?? "latest";
 
   return (
-    <div className="flex flex-col flex-1 px-4 py-10 sm:px-6">
-      <div className="mx-auto w-full max-w-6xl">
+    <div className="flex flex-col flex-1 px-4 py-8 sm:px-6">
+      <div className="mx-auto w-full max-w-[61rem]">
         <h1
-          className={`${instrumentSerif.className} text-4xl font-[900] tracking-tight text-primary italic`}
+          className={`${instrumentSerif.className} text-[2rem] font-[900] tracking-tight text-primary italic`}
           style={{ fontWeight: 900, fontStyle: "italic" }}
         >
           Downloads
         </h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Pick a stable build for your system, or grab the latest development build and source archive.
+        <p className="mt-1.5 max-w-2xl text-[13px] text-muted-foreground">
+          Select your platform first, then choose the package or build you want.
         </p>
-        <DownloadsClient
-          latestRelease={latestRelease}
-          latestDevRelease={latestDevRelease}
-          isDevSynced={isDevSynced}
+        <DownloadHome
+          releaseLabel={releaseLabel}
+          sourceTarballUrl={latestRelease?.sourceTarballUrl ?? null}
+          sourceZipUrl={latestRelease?.sourceZipUrl ?? null}
         />
       </div>
     </div>
