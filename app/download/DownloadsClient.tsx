@@ -148,7 +148,7 @@ export default function DownloadsClient({
               href={release.macosUrl}
               className="btn-ide gap-2 px-3 py-2 text-xs"
             >
-              {prefix} macOS (.dmg)
+              {prefix} macOS (.pkg)
             </a>
           )}
           {release.windowsUrl && (
@@ -467,10 +467,10 @@ export default function DownloadsClient({
 
           <DownloadOption
             title="macOS"
-            description="Universal DMG"
+            description="Universal PKG"
             icon={osIcons.apple}
             type="file"
-            fileType="DMG"
+            fileType="PKG"
             downloadUrl={macosUrl ?? undefined}
             disabled={!macosUrl}
             disabledLabel="Building"

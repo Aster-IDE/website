@@ -49,7 +49,7 @@ function pickAssetUrl(assets: GitHubReleaseAsset[], patterns: RegExp[]) {
 function mapRelease(release: GitHubRelease): DownloadReleaseInfo {
   return {
     version: release.tag_name,
-    macosUrl: pickAssetUrl(release.assets, [/\.dmg$/i]),
+    macosUrl: pickAssetUrl(release.assets, [/\.pkg$/i]),
     windowsUrl: pickAssetUrl(release.assets, [/\.exe$/i]),
     linuxUrl: pickAssetUrl(release.assets, [/\.AppImage$/i]),
     freebsdUrl: pickAssetUrl(release.assets, [/asteride-freebsd/i]),
