@@ -41,6 +41,8 @@ export default function DownloadsClient({
   const [isCopied, setIsCopied] = useState(false);
   const [xattrCopied, setXattrCopied] = useState(false);
   const [sourceCodeOpen, setSourceCodeOpen] = useState(false);
+  const [installersOpen, setInstallersOpen] = useState(false);
+  const [installScriptsOpen, setInstallScriptsOpen] = useState(false);
   const [selectedNixOption, setSelectedNixOption] = useState<NixOption>("flake");
   const [copiedSection, setCopiedSection] = useState<string | null>(null);
   const copyTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -559,6 +561,66 @@ export default function DownloadsClient({
                     >
                       Download .tar.gz
                     </a>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <div className="border border-border bg-card rounded-md overflow-hidden">
+            <button
+              className="w-full cursor-pointer px-4 py-3 text-center text-base font-semibold transition-colors hover:bg-accent/30"
+              onClick={() => setInstallersOpen(!installersOpen)}
+            >
+              Installers
+            </button>
+
+            <AnimatePresence initial={false}>
+              {installersOpen && (
+                <motion.div
+                  key="installers"
+                  initial={{ height: 0, opacity: 0, y: -10 }}
+                  animate={{ height: "auto", opacity: 1, y: 0 }}
+                  exit={{ height: 0, opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-col p-3 pb-2 pt-0">
+                    <p className="text-sm text-muted-foreground">
+                      System installers for easy setup.
+                    </p>
+                    <p className="text-sm text-primary font-medium mt-2">
+                      Coming Soon
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <div className="border border-border bg-card rounded-md overflow-hidden">
+            <button
+              className="w-full cursor-pointer px-4 py-3 text-center text-base font-semibold transition-colors hover:bg-accent/30"
+              onClick={() => setInstallScriptsOpen(!installScriptsOpen)}
+            >
+              Install Scripts
+            </button>
+
+            <AnimatePresence initial={false}>
+              {installScriptsOpen && (
+                <motion.div
+                  key="installScripts"
+                  initial={{ height: 0, opacity: 0, y: -10 }}
+                  animate={{ height: "auto", opacity: 1, y: 0 }}
+                  exit={{ height: 0, opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-col p-3 pb-2 pt-0">
+                    <p className="text-sm text-muted-foreground">
+                      Automated installation scripts for various platforms.
+                    </p>
+                    <p className="text-sm text-primary font-medium mt-2">
+                      Coming Soon
+                    </p>
                   </div>
                 </motion.div>
               )}
