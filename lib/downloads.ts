@@ -131,8 +131,8 @@ export function getPlatformAssets(
 
   const patterns: Record<DownloadPlatform, RegExp[]> = {
     windows: [/\.exe$/i, /\.msi$/i],
-    macos: [/\.pkg$/i],
-    linux: [],
+    macos: [/\.dmg$/i, /\.pkg$/i],
+    linux: [/\.deb$/i, /\.AppImage$/i, /\.flatpak$/i, /\.snap$/i, /\.pkg\.tar\.(?:zst|xz)$/i],
     freebsd: [/freebsd/i],
     nix: [],
   };
@@ -147,24 +147,30 @@ export function formatAssetTitle(assetName: string, platform: DownloadPlatform) 
 
   if (platform === "windows") {
     if (lowerName.endsWith(".msi")) return "Windows MSI installer";
-    return "Windows executable";
+    return "Windows Executable";
   }
 
   if (platform === "macos") {
-    return "macOS package";
+    if (lowerName.endsWith(".dmg")) return "macOS Disk Mounter Image";
+    if (lowerName.endsWith(".pkg")) return "macOS Package Installer";
+    return "macOS Package";
   }
 
   if (platform === "linux") {
-    if (lowerName.endsWith(".deb")) return "Debian package";
-    if (lowerName.endsWith(".rpm")) return "RPM package";
+    if (lowerName.endsWith(".deb")) return "Debian Package";
+    if (lowerName.endsWith(".rpm")) return "RPM Package";
+    if (lowerName.endsWith(".appimage")) return "AppImage";
+    if (lowerName.endsWith(".flatpak")) return "Flatpak";
+    if (lowerName.endsWith(".snap")) return "Snap Package";
+    if (lowerName.endsWith(".pkg.tar.zst") || lowerName.endsWith(".pkg.tar.xz")) return "Arch Package";
     if (lowerName.endsWith(".tar.gz") || lowerName.endsWith(".tar.xz") || lowerName.endsWith(".tar.zst")) {
-      return "Linux tarball";
+      return "Linux Tarball";
     }
-    return "Linux package";
+    return "Linux Package";
   }
 
   if (platform === "freebsd") {
-    return "FreeBSD binary";
+    return "FreeBSD Binary";
   }
 
   return assetName;

@@ -37,6 +37,7 @@ export default async function DownloadPage() {
           releaseLabel={releaseLabel}
           sourceTarballUrl={latestRelease?.sourceTarballUrl ?? null}
           sourceZipUrl={latestRelease?.sourceZipUrl ?? null}
+          latestRelease={latestRelease}
         />
       </div>
     </div>

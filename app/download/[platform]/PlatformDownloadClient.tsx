@@ -228,7 +228,7 @@ export default function PlatformDownloadClient({
               </p>
             </div>
             <CopyCommand
-              label="Clear Gatekeeper attributes"
+              label="Clear Gatekeeper attributes (DMG)"
               command="xattr -c /Applications/AsterIDE.app"
             />
           </section>

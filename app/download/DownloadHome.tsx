@@ -2,7 +2,8 @@ import Link from "next/link";
 import { FaApple, FaArrowRight, FaDownload, FaFreebsd, FaWindows } from "react-icons/fa";
 import { SiNixos } from "react-icons/si";
 import { osIcons } from "../icons/icons";
-import type { DownloadPlatform } from "@/lib/downloads";
+import type { DownloadPlatform, DownloadReleaseInfo } from "@/lib/downloads";
+import { getPlatformAssets } from "@/lib/downloads";
 
 type PlatformCard = {
   platform: DownloadPlatform;
@@ -12,40 +13,35 @@ type PlatformCard = {
   icon: React.ReactNode;
 };
 
-const platforms: PlatformCard[] = [
+const basePlatforms: Omit<PlatformCard, 'status'>[] = [
   {
     platform: "windows",
     title: "Windows",
     description: "Executable builds for Windows desktops.",
-    status: "EXE",
     icon: <FaWindows className="h-6 w-6" />,
   },
   {
     platform: "macos",
     title: "macOS",
     description: "Universal package installer for Mac.",
-    status: "PKG",
     icon: <FaApple className="h-6 w-6" />,
   },
   {
     platform: "linux",
     title: "Linux",
-    description: "Linux builds are coming soon.",
-    status: "SOON",
+    description: "Package builds for Linux distributions.",
     icon: osIcons.linux,
   },
   {
     platform: "freebsd",
     title: "FreeBSD",
     description: "Binary builds for FreeBSD.",
-    status: "BINARY",
     icon: <FaFreebsd className="h-6 w-6" />,
   },
   {
     platform: "nix",
     title: "Nix",
     description: "Run AsterIDE through flakes or overlays.",
-    status: "FLAKE",
     icon: <SiNixos className="h-6 w-6" />,
   },
 ];
@@ -54,13 +50,50 @@ type DownloadHomeProps = {
   releaseLabel: string;
   sourceTarballUrl: string | null;
   sourceZipUrl: string | null;
+  latestRelease: DownloadReleaseInfo | null;
 };
 
 export default function DownloadHome({
   releaseLabel,
   sourceTarballUrl,
   sourceZipUrl,
+  latestRelease,
 }: DownloadHomeProps) {
+  const platforms: PlatformCard[] = basePlatforms.map((base) => {
+    const assets = getPlatformAssets(latestRelease, base.platform);
+    let status = "SOON";
+
+    if (base.platform === "nix") {
+      status = "FLAKE";
+    } else if (assets.length > 0) {
+      const getAssetType = (assetName: string): string => {
+        const lowerName = assetName.toLowerCase();
+        if (lowerName.endsWith(".exe")) return "EXE";
+        if (lowerName.endsWith(".msi")) return "MSI";
+        if (lowerName.endsWith(".dmg")) return "DMG";
+        if (lowerName.endsWith(".pkg")) return "PKG";
+        if (lowerName.endsWith(".deb")) return "DEB";
+        if (lowerName.endsWith(".rpm")) return "RPM";
+        if (lowerName.endsWith(".appimage")) return "APPIMAGE";
+        if (lowerName.endsWith(".flatpak")) return "FLATPAK";
+        if (lowerName.endsWith(".snap")) return "SNAP";
+        if (lowerName.includes("freebsd")) return "BINARY";
+        return "FILE";
+      };
+
+      const firstAsset = assets[0];
+      const firstType = getAssetType(firstAsset.name);
+
+      if (assets.length > 1) {
+        status = `${firstType}+${assets.length - 1}`;
+      } else {
+        status = firstType;
+      }
+    }
+
+    return { ...base, status };
+  });
+
   const sourceOptions = [
     {
       title: "Source tarball",
