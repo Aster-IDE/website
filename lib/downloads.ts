@@ -132,7 +132,7 @@ export function getPlatformAssets(
   const patterns: Record<DownloadPlatform, RegExp[]> = {
     windows: [/\.exe$/i, /\.msi$/i],
     macos: [/\.dmg$/i, /\.pkg$/i],
-    linux: [/\.deb$/i, /\.AppImage$/i, /\.flatpak$/i, /\.snap$/i, /\.pkg\.tar\.(?:zst|xz)$/i],
+    linux: [/\.deb$/i, /\.rpm$/i, /\.AppImage$/i, /\.flatpak$/i, /\.snap$/i, /\.pkg\.tar\.(?:zst|xz)$/i],
     freebsd: [/freebsd/i],
     nix: [],
   };
