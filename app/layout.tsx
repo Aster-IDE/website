@@ -43,36 +43,6 @@ export function getPageTitle(baseTitle: string): string {
   return envLabel ? `${baseTitle} ${envLabel}` : baseTitle;
 }
 
-const themeInitScript = `
-(function() {
-  const key = "theme-mode";
-  const root = document.documentElement;
-  
-  const saved = localStorage.getItem(key);
-  const mode = saved === "light" || saved === "dark" || saved === "system" ? saved : "system";
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const resolved = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
-  
-  if (resolved === "dark") {
-    root.classList.add("dark");
-  } else {
-    root.classList.remove("dark");
-  }
-  root.dataset.theme = mode;
-  
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  mediaQuery.addEventListener("change", (e) => {
-    const currentMode = localStorage.getItem(key);
-    if (currentMode === "system") {
-      if (e.matches) {
-        root.classList.add("dark");
-      } else {
-        root.classList.remove("dark");
-      }
-    }
-  });
-})();
-`;
 
 export default function RootLayout({
   children,
@@ -109,8 +79,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col pt-20 pb-20">
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      <body className="min-h-full flex flex-col pt-20 pb-20 relative">
+        <div 
+          className="fixed inset-0 -z-10 opacity-10 pointer-events-none backdrop-blur-sm"
+          style={{
+            backgroundImage: 'url(https://raw.githubusercontent.com/Aster-IDE/AsterIDE/refs/heads/master/assets/bg/femware.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
         <ReadingProgressBar />
         <DarkReaderDetector />
         <CommandPalette />
@@ -131,12 +109,48 @@ export default function RootLayout({
                 Home
               </Link>
               <span className="text-muted-foreground/30">|</span>
-              <Link
-                href="/download"
-                className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                Download
-              </Link>
+              <div className="relative group">
+                <Link
+                  href="/download"
+                  className="text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Download
+                </Link>
+                <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                  <div className="bg-background border border-border shadow-md py-1">
+                    <Link
+                      href="/download/windows"
+                      className="block px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary hover:bg-accent/50"
+                    >
+                      Windows
+                    </Link>
+                    <Link
+                      href="/download/macos"
+                      className="block px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary hover:bg-accent/50"
+                    >
+                      macOS
+                    </Link>
+                    <Link
+                      href="/download/linux"
+                      className="block px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary hover:bg-accent/50"
+                    >
+                      Linux
+                    </Link>
+                    <Link
+                      href="/download/freebsd"
+                      className="block px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary hover:bg-accent/50"
+                    >
+                      FreeBSD
+                    </Link>
+                    <Link
+                      href="/download/nix"
+                      className="block px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.09em] text-muted-foreground transition-colors hover:text-primary hover:bg-accent/50"
+                    >
+                      Nix
+                    </Link>
+                  </div>
+                </div>
+              </div>
               <span className="text-muted-foreground/30">|</span>
               <Link
                 href="/team"

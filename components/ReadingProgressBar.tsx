@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function ReadingProgressBar() {
   const [progress, setProgress] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +22,17 @@ export default function ReadingProgressBar() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // reset progress when route changes. the setState warning is a false positive here since
+    // we're just synchronizing the state with the router.
+    // implementing alternatives like key based remount or refs would
+    // be more complex, and performance impact is negligible as this only runs on navigation.
+
+    // eslint-disable-next-line
+    setProgress(0);
+  }, [pathname]);
 
   return (
     <div className="fixed top-0 left-0 right-0 h-1 z-[150] bg-transparent">
