@@ -132,7 +132,7 @@ export function getPlatformAssets(
   const patterns: Record<DownloadPlatform, RegExp[]> = {
     windows: [/\.exe$/i, /\.msi$/i],
     macos: [/\.dmg$/i, /\.pkg$/i],
-    linux: [/\.deb$/i, /\.rpm$/i, /\.AppImage$/i, /\.flatpak$/i, /\.snap$/i, /\.pkg\.tar\.(?:zst|xz)$/i],
+    linux: [/\.deb$/i, /\.rpm$/i, /\.ebuild$/i, /\.AppImage$/i, /\.flatpak$/i, /\.snap$/i, /\.pkg\.tar\.(?:zst|xz)$/i],
     freebsd: [/freebsd/i],
     nix: [],
   };
@@ -159,6 +159,7 @@ export function formatAssetTitle(assetName: string, platform: DownloadPlatform) 
   if (platform === "linux") {
     if (lowerName.endsWith(".deb")) return "Debian Package";
     if (lowerName.endsWith(".rpm")) return "RPM Package";
+    if (lowerName.endsWith(".ebuild")) return "Gentoo Ebuild";
     if (lowerName.endsWith(".appimage")) return "AppImage";
     if (lowerName.endsWith(".flatpak")) return "Flatpak";
     if (lowerName.endsWith(".snap")) return "Snap Package";
