@@ -81,9 +81,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col pt-20 pb-20 relative">
         <div 
-          className="fixed inset-0 -z-10 opacity-10 pointer-events-none backdrop-blur-sm"
+          className="fixed inset-0 -z-10 opacity-10 pointer-events-none"
           style={{
-            backgroundImage: 'url(https://raw.githubusercontent.com/Aster-IDE/AsterIDE/refs/heads/master/assets/bg/femware.png)',
+            backgroundImage: 'url(https://assets.asteride.dev/femware.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
