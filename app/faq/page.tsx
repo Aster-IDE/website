@@ -1,20 +1,14 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Instrument_Serif } from "next/font/google";
 import CherryBlossom from "@/components/CherryBlossom";
+import { useState } from "react";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
 });
-
-export const metadata: Metadata = {
-  title: "AsterIDE::FAQ",
-  description: "Got questions about AsterIDE? We've got answers.",
-  other: {
-    "theme-color": "#c33769",
-  },
-};
 
 const faqs = [
   {
@@ -23,7 +17,7 @@ const faqs = [
   },
   {
     question: "What platforms does AsterIDE support?",
-    answer: "AsterIDE currently supports macOS, Windows, and FreeBSD. Linux support is coming soon. We're committed to making AsterIDE available on all major platforms."
+    answer: "AsterIDE currently supports Windows, macOS, Linux (.deb, .rpm. .ebuild), and FreeBSD"
   },
   {
     question: "Is AsterIDE free and open source?",
@@ -60,6 +54,12 @@ const faqs = [
 ];
 
 export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <div className="flex flex-col flex-1 relative">
       <CherryBlossom count={20} />
@@ -75,11 +75,28 @@ export default function FAQ() {
             Got questions about AsterIDE? We&apos;ve got answers.
           </p>
           
-          <div className="space-y-6">
+          <div className="space-y-3">
             {faqs.map((faq, index) => (
-              <div key={index} className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
-                <h3 className="font-semibold text-lg mb-3 text-foreground">{faq.question}</h3>
-                <p className="text-base text-muted-foreground leading-relaxed">{faq.answer}</p>
+              <div key={index} className="rounded-xl border border-border bg-card/50 overflow-hidden">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-accent/30 transition-colors"
+                >
+                  <h3 className="font-semibold text-lg text-foreground">{faq.question}</h3>
+                  <svg
+                    className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openIndex === index && (
+                  <div className="px-6 pb-4">
+                    <p className="text-base text-muted-foreground leading-relaxed">{faq.answer}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
