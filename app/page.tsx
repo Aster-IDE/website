@@ -138,7 +138,7 @@ export default async function Home() {
               <div className="mb-3 text-2xl text-[#FF82B4]">{miscIcons.desktop}</div>
               <h3 className="mb-2 font-semibold">Cross Platform</h3>
               <p className="text-base text-muted-foreground">
-                AsterIDE supports macOS, Windows, FreeBSD, and Nix. Soon coming to Linux.
+                AsterIDE supports Windows, macOS Silicon, FreeBSD, and Linux.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card/50 p-6 hover:bg-accent/30 transition-colors">
